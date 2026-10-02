@@ -4,14 +4,25 @@ Personal academic website — React + Vite, deployed to GitHub Pages at https://
 
 ## Edit the content
 
-All text lives in [`src/content.ts`](src/content.ts): bio, links, education, news, publications, projects.
-Items marked `TODO` are placeholders.
+All text lives in [`src/content.ts`](src/content.ts), drawn from the CV: bio, links, education,
+research experience, research projects, and publications.
 
 - **Photo:** put a square image at `public/profile.jpg`, then set `photo: "/profile.jpg"`.
 - **CV:** put your PDF at `public/cv.pdf`, then set the CV link to `"/cv.pdf"`.
-- **Papers:** PDFs can go in `public/papers/` and be linked as `"/papers/name.pdf"`.
+- **Project covers:** put an image in `public/projects/` and set the project's `cover`
+  (e.g. `"/projects/boston.jpg"`). Projects without one get a generated constellation cover.
+- **Project keywords:** each project's `keywords` drive the filter buttons; add new ones to `KEYWORDS`.
+- **Publication links on cards:** list publication ids (e.g. `"P7"`, `"C15"`) in a project's
+  `publications`; they link to that entry in the Publications section.
 
 Links with an empty `href` are hidden automatically.
+
+## Font
+
+The site uses **D-DIN** (free DIN-style face, SIL Open Font License — see
+`public/fonts/d-din/OFL.txt`), self-hosted from `public/fonts/d-din/`. To switch to the licensed
+DIN 2014 later, create an Adobe Fonts web project, add its `<link>` to `index.html`, and put
+`"din-2014"` first in `--font` in `src/index.css`.
 
 ## Preview locally
 

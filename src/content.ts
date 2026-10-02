@@ -1,100 +1,655 @@
-// Everything on the site comes from this file. Edit the text here; App.tsx handles layout.
-// Items marked TODO are placeholders — replace or delete them before sharing the site.
+// Everything on the site comes from this file (sourced from CV_SeungJaeLieu_26.docx).
+// Edit the text here; the components in src/ handle layout.
 
 export type Link = { label: string; href: string };
 
-export type Publication = {
-  title: string;
-  authors: string[];
-  venue: string;
-  year: number;
-  status?: string; // e.g. "Under review", "Forthcoming"
-  links?: Link[]; // e.g. [{ label: "PDF", href: "/papers/my-paper.pdf" }]
-};
-
-export type Project = {
-  title: string;
-  description: string;
-  href: string;
-  tags: string[];
-};
-
 export const profile = {
   name: "Seung Jae Lieu",
-  // How your name appears in author lists; matching entries are bolded in Publications.
-  authorName: "S. J. Lieu",
-  role: "Ph.D. Student",
-  affiliation: "Georgia Institute of Technology",
-  department: "School of Civil and Environmental Engineering", // TODO: confirm your school
-  location: "Atlanta, GA",
-  // Put a square photo in public/ (e.g. public/profile.jpg) and set "/profile.jpg". Empty shows initials.
+  // How your name appears in author lists; it is bolded in Publications.
+  authorName: "Lieu, S.J.",
+  eyebrow: "Ph.D. Student · City and Regional Planning · Georgia Tech",
+  // Put a square photo in public/ (e.g. public/profile.jpg) and set "/profile.jpg".
+  // Empty shows a placeholder circle.
   photo: "",
   tagline:
-    "I study how people move through cities — micromobility, transit, and walking — and how street design shapes who can get where.", // TODO
+    "I study how streets and neighborhoods shape the way people walk, bike, ride transit, and drive — combining travel-behavior models with vision AI and urban big data.",
 
   links: [
-    { label: "Email", href: "mailto:lsj6308@gmail.com" }, // TODO: swap for your GT email if preferred
-    { label: "GitHub", href: "https://github.com/sjlieu" },
-    { label: "Google Scholar", href: "" }, // TODO: paste your Scholar profile URL
-    { label: "LinkedIn", href: "" }, // TODO
-    { label: "CV", href: "" }, // TODO: add public/cv.pdf and set "/cv.pdf"
+    { label: "Email", href: "mailto:slieu3@gatech.edu" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/lsj97/" },
+    { label: "Google Scholar", href: "https://scholar.google.com/citations?user=heHaGWsAAAAJ&hl=en" },
+    { label: "CV", href: "" }, // Add public/cv.pdf and set "/cv.pdf" to show this button.
   ] satisfies Link[],
 
   bio: [
-    "I am a Ph.D. student at the Georgia Institute of Technology. My research combines travel-behavior modeling with large-scale spatial data to understand how the built environment shapes mobility choices.", // TODO
-    "Recent work includes choice models for shared e-scooter use in Seoul, open datasets on sidewalk accessibility, and interactive tools for measuring transit access and equity in Atlanta.", // TODO
-  ],
-
-  interests: [
-    "Micromobility",
-    "Travel behavior & choice modeling",
-    "Transit accessibility & equity",
-    "Pedestrian infrastructure",
-    "Urban spatial data",
+    "I am a Ph.D. student in City and Regional Planning at the Georgia Institute of Technology, advised by Subhrajit Guhathakurta and Gulsah Akar, and a graduate research assistant at the Center for Urban Resilience and Analytics. My research spans sustainable transportation, urban analytics, travel behavior, and vision AI.",
+    "I build tools that measure streets at scale — sidewalk widths, bike lanes, bus stop amenities, and how complete a street is — and use them to understand route choice, mode choice, and equity in access. In 2026 I was a visiting student at the MIT Senseable City Lab, where I worked on Open Walks, a global, crowdsourced map of sidewalk accessibility.",
   ],
 
   education: [
-    { degree: "Ph.D., Civil Engineering", school: "Georgia Institute of Technology", years: "20XX – present" }, // TODO
-    { degree: "M.S., …", school: "…", years: "20XX" }, // TODO
-    { degree: "B.S., …", school: "…", years: "20XX" }, // TODO
+    {
+      title: "Ph.D., City and Regional Planning",
+      org: "Georgia Institute of Technology",
+      place: "Atlanta, GA",
+      dates: "Aug 2023 – Present",
+      note: "Advisors: Subhrajit Guhathakurta, Gulsah Akar",
+    },
+    {
+      title: "M.S., Urban Analytics",
+      org: "Georgia Institute of Technology",
+      place: "Atlanta, GA",
+      dates: "Aug 2024 – Present",
+    },
+    {
+      title: "M.S., Civil and Environmental Engineering\nMaster of City and Regional Planning",
+      org: "Georgia Institute of Technology",
+      place: "Atlanta, GA",
+      dates: "Aug 2021 – May 2023",
+      note: "Advisors: Patricia Mokhtarian, Catherine Ross",
+    },
+    {
+      title: "B.S., Urban Engineering",
+      org: "Hanyang University",
+      place: "Seoul, South Korea",
+      dates: "Mar 2017 – Feb 2021",
+    },
+  ],
+
+  researchExperience: [
+    {
+      title: "Graduate Research Assistant",
+      org: "Center for Urban Resilience and Analytics, Georgia Tech",
+      place: "Atlanta, GA",
+      dates: "Aug 2021 – Present",
+      note: "Supervisor: Subhrajit Guhathakurta",
+    },
+    {
+      title: "Graduate Research Assistant",
+      org: "Resilient and Equitable Mobility Analytics and Planning Lab, Georgia Tech",
+      place: "Atlanta, GA",
+      dates: "Jan 2026 – Present",
+      note: "Supervisor: Rounaq Basu",
+    },
+    {
+      title: "Visiting Student",
+      org: "Senseable City Lab, Massachusetts Institute of Technology",
+      place: "Cambridge, MA & Seoul, South Korea",
+      dates: "Feb 2026 – Aug 2026",
+      note: "Supervisors: Diego Morra, Martina Mazzarello",
+    },
+    {
+      title: "Undergraduate Research Assistant",
+      org: "Urban Design and Spatial Analytics Lab, Hanyang University",
+      place: "Seoul, South Korea",
+      dates: "Mar 2020 – May 2021",
+      note: "Supervisor: Sugie Lee",
+    },
   ],
 };
 
-export const news: { date: string; text: string }[] = [
-  { date: "Oct 2026", text: "Launched this website." },
-  { date: "20XX", text: "TODO: a recent talk, award, paper acceptance, or new position." },
-];
+// ---------- Research projects ----------
 
-export const publications: Publication[] = [
-  // TODO: replace this example entry with your papers (newest first).
-  {
-    title: "Example paper title — replace with your own",
-    authors: ["S. J. Lieu", "Coauthor A", "Advisor B"],
-    venue: "Journal or Conference Name",
-    year: 2026,
-    status: "Example",
-    links: [{ label: "PDF", href: "" }],
-  },
-];
+// The filter buttons are built from the keywords used below, in this order.
+export const KEYWORDS = [
+  "Vision AI",
+  "Travel Behavior",
+  "Walking",
+  "Micromobility",
+  "Shared Mobility",
+  "Transit",
+  "Complete Streets",
+  "Equity",
+  "Extreme Heat",
+  "Urban Analytics",
+  "Planning Practice",
+] as const;
+
+export type Keyword = (typeof KEYWORDS)[number];
+
+export type Project = {
+  id: string;
+  title: string;
+  dates: string;
+  // Path to an image in public/ (e.g. "/projects/my-project.jpg"). Empty draws a generated cover.
+  cover: string;
+  keywords: Keyword[];
+  publications: string[]; // ids from the publications list below, e.g. "P7"
+  people: string[];
+  details: string[];
+  links: Link[];
+};
 
 export const projects: Project[] = [
   {
-    title: "Seoul Sidewalk Accessibility Images",
-    description:
-      "Pedestrian-perspective sidewalk images from Seoul with field-measured and expert-annotated accessibility attributes.",
-    href: "https://github.com/sjlieu/seoul_sidewalk_accessibility_image",
-    tags: ["Dataset", "Accessibility"],
+    id: "routable-networks",
+    title: "Boston Region Routable Mobility Networks",
+    dates: "Jan 2026 – Present",
+    cover: "",
+    keywords: ["Vision AI", "Walking", "Urban Analytics"],
+    publications: [],
+    people: ["Project PI: Dr. Rounaq Basu", "Funding: Boston Region MPO"],
+    details: [
+      "Developed a vision AI model identifying the pedestrian network from aerial imagery while addressing occlusion caused by tree canopy and shadows cast by buildings and trees.",
+      "Released the code as a public GitHub repository for open use.",
+    ],
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/remap-research-group/routable-mobility-networks/tree/main/pedestrian_network",
+      },
+    ],
   },
   {
-    title: "Transit Accessibility in Atlanta",
-    description: "Interactive visualization of transit accessibility across the City of Atlanta.",
-    href: "https://github.com/sjlieu/TransitAccessibility",
-    tags: ["Visualization", "Transit"],
+    id: "bicycle-trajectories",
+    title: "Knowledge from City-wide Bicycle Trajectory Data",
+    dates: "Jul 2026 – Present",
+    cover: "",
+    keywords: ["Micromobility", "Shared Mobility", "Travel Behavior"],
+    publications: [],
+    people: ["Collaborator: Dr. Joonho Ko"],
+    details: [
+      "Among bikeshare users, explored the extent to which subscription commitment coincides with observed frequent use.",
+    ],
+    links: [],
   },
   {
-    title: "Transit Equity in Atlanta",
-    description: "Interactive visualization of transit equity across the City of Atlanta.",
-    href: "https://github.com/sjlieu/transit-equity",
-    tags: ["Visualization", "Equity"],
+    id: "e-scooter-heat",
+    title: "Travel Behavior Analysis of Shared E-scooter Users",
+    dates: "Mar 2026 – Present",
+    cover: "",
+    keywords: ["Micromobility", "Shared Mobility", "Travel Behavior", "Extreme Heat"],
+    publications: [],
+    people: ["Collaborators: Drs. Rounaq Basu, Sugie Lee"],
+    details: ["Examined how e-scooter users changed their travel behavior under extreme heat exposure."],
+    links: [],
+  },
+  {
+    id: "open-walks",
+    title: "Open Walks",
+    dates: "Mar 2026 – Present",
+    cover: "/projects/open-walks.jpg",
+    keywords: ["Vision AI", "Walking"],
+    publications: ["W1", "W9"],
+    people: ["Project PI: Dr. Martina Mazzarello", "MIT Senseable City Lab"],
+    details: [
+      "Developed a tool to capture sidewalk attributes (e.g., width, slope, surface material) at global scale from crowdsourced video data using vision AI.",
+      "Quantified the uncertainty of visual language models when assessing sidewalk attributes via conformal prediction.",
+    ],
+    links: [{ label: "Application", href: "https://openwalks.netlify.app/" }],
+  },
+  {
+    id: "complete-streets",
+    title: "Evaluating the Completeness of Urban Streets Using Big Data and AI",
+    dates: "Aug 2024 – Dec 2025",
+    cover: "/projects/complete-streets.jpg",
+    keywords: ["Vision AI", "Complete Streets", "Walking", "Micromobility", "Transit"],
+    publications: ["P8", "P7", "P6", "W11", "C15", "C7", "C5"],
+    people: [
+      "Project PI: Dr. Subhrajit Guhathakurta",
+      "Funding: U.S. Department of Transportation (Grant no. 69A3552344815)",
+    ],
+    details: [
+      "Led the research group and developed a framework to quantify attributes of diverse street elements, with a composite scoring system that evaluates completeness using AI and big data.",
+      "Developed a tool estimating sidewalk width using street view imagery and computer vision.",
+      "Developed a framework identifying bike lane type using multimodal imagery.",
+      "Built an agent that automatically finds and identifies bus stop amenities using reinforcement learning.",
+      "Published an online dashboard and a public GitHub repository.",
+    ],
+    links: [
+      { label: "Dashboard", href: "https://gt-cura.github.io/complete_streets_web/" },
+      { label: "GitHub", href: "https://github.com/GT-CURA/complete_streets" },
+    ],
+  },
+  {
+    id: "odmts-equity",
+    title: "Transit Equity Implications of On-Demand Multimodal Transit System",
+    dates: "Sep 2021 – Dec 2022",
+    cover: "/projects/transit-equity.jpg",
+    keywords: ["Transit", "Equity", "Shared Mobility"],
+    publications: ["P2", "C1"],
+    people: [
+      "Project PI: Dr. Subhrajit Guhathakurta",
+      "Funding: National Science Foundation (Grant no. CMMI-1854684)",
+    ],
+    details: [
+      "Examined the impact of the ODMTS on transit equity and equality by comparing it with the existing public transit system in Atlanta.",
+      "Created an online dashboard to visualize which neighborhoods take advantage of ODMTS.",
+    ],
+    links: [{ label: "Dashboard", href: "https://geospatial.gatech.edu/transit-equity/" }],
+  },
+  {
+    id: "home-park-studio",
+    title: "Home Park Planning Studio",
+    dates: "Aug 2022 – Dec 2022",
+    cover: "",
+    keywords: ["Planning Practice"],
+    publications: ["R1"],
+    people: ["Advisor: Aaron Fortner, AICP"],
+    details: [
+      "Conducted data analysis, documentation, visualization, and presentation in a cross-disciplinary, community-involved process to recommend actions that signal a reimagining of neighborhood value.",
+    ],
+    links: [],
+  },
+  {
+    id: "redevelopment-potential",
+    title: "Evaluation of Redevelopment Potential",
+    dates: "May 2022 – Aug 2022",
+    cover: "",
+    keywords: ["Planning Practice", "Urban Analytics"],
+    publications: [],
+    people: ["Advisor: Wei Wang, AICP"],
+    details: ["Proposed several methods to identify land parcels with the potential for redevelopment."],
+    links: [],
+  },
+  {
+    id: "highway-rest-area",
+    title: "Transfer at Highway Rest Area",
+    dates: "Apr 2020 – Jul 2020",
+    cover: "",
+    keywords: ["Shared Mobility", "Transit"],
+    publications: [],
+    people: ["Project PI (self)", "Funding: Korean Ministry of Land, Infrastructure, and Transport"],
+    details: [
+      "Developed a mobility-on-demand service that let passengers plan a long-distance trip combining car sharing and intercity bus.",
+    ],
+    links: [],
+  },
+];
+
+// ---------- Publications ----------
+
+export type PublicationKind = "journal" | "working" | "report" | "conference";
+
+export type Publication = {
+  id: string;
+  kind: PublicationKind;
+  year: number;
+  authors: string;
+  title: string;
+  venue: string;
+  status?: string; // shown before the venue, e.g. "Under review in"
+  links: Link[]; // the first link is also applied to the title
+};
+
+const doi = (id: string): Link => ({ label: "DOI", href: `https://doi.org/${id}` });
+
+export const publications: Publication[] = [
+  // Peer-reviewed papers
+  {
+    id: "P10",
+    kind: "journal",
+    year: 2026,
+    authors: "Lieu, S.J.† and Guhathakurta, S.",
+    title:
+      "Why do residents still drive and travel beyond high-accessibility neighborhoods? Examining the challenges to the 15-minute city concept",
+    venue: "Sustainable Cities and Society",
+    links: [
+      doi("10.1016/j.scs.2026.107597"),
+      {
+        label: "Media: Tech Square ATL",
+        href: "https://www.techsquareatl.com/tech-square-news/2026/5/18/moving-from-the-15-minute-city-to-the-harmonious-city",
+      },
+    ],
+  },
+  {
+    id: "P9",
+    kind: "journal",
+    year: 2026,
+    authors: "Lieu, S.J.†, Ki, D., and Akar, G.",
+    title: "Age heterogeneity in bike share users’ route choice: Integrating streetscape and midblock conflicts",
+    venue: "Travel Behaviour and Society",
+    links: [doi("10.1016/j.tbs.2026.101302")],
+  },
+  {
+    id: "P8",
+    kind: "journal",
+    year: 2026,
+    authors: "Lieu, S.J.†, Koo, B.W., Hwang, U., and Guhathakurta, S.",
+    title: "Automated detection and classification of bike lanes using multimodal imagery",
+    venue: "Remote Sensing Applications: Society and Environment",
+    links: [doi("10.1016/j.rsase.2025.101817")],
+  },
+  {
+    id: "P7",
+    kind: "journal",
+    year: 2026,
+    authors: "Lieu, S.J.† and Guhathakurta, S.",
+    title: "A novel approach for estimating sidewalk width from street view images and computer vision",
+    venue: "Environment and Planning B: Urban Analytics and City Science",
+    links: [doi("10.1177/23998083251369602")],
+  },
+  {
+    id: "P6",
+    kind: "journal",
+    year: 2026,
+    authors: "Jones, B., Lieu, S.J.†, and Guhathakurta, S.",
+    title: "Active navigation with reinforcement learning for bus stop amenity auditing in street view imagery",
+    venue: "Transportation Research Interdisciplinary Perspectives",
+    links: [doi("10.1016/j.trip.2026.102240")],
+  },
+  {
+    id: "P5",
+    kind: "journal",
+    year: 2026,
+    authors: "Han, C., Lieu, S.J., Hwang, U., and Guhathakurta, S.",
+    title:
+      "Do streetscapes still matter for customer ratings of eating and drinking establishments in car-dependent cities?",
+    venue: "Journal of Urban Design",
+    links: [doi("10.1080/13574809.2025.2541953")],
+  },
+  {
+    id: "P4",
+    kind: "journal",
+    year: 2025,
+    authors: "Lieu, S.J.† and Akar, G.",
+    title: "Understanding rail users’ mode choice behavior for first and last mile travel",
+    venue: "Journal of Transport Geography",
+    links: [doi("10.1016/j.jtrangeo.2025.104214")],
+  },
+  {
+    id: "P3",
+    kind: "journal",
+    year: 2025,
+    authors: "Lieu, S.J.† and Guhathakurta, S.",
+    title: "Exploring pedestrian route choice preferences by demographic groups: Analysis of street attributes in Chicago",
+    venue: "Transportation Research Part A: Policy and Practice",
+    links: [doi("10.1016/j.tra.2025.104437")],
+  },
+  {
+    id: "P2",
+    kind: "journal",
+    year: 2025,
+    authors: "Hwang, U., Lieu, S.J., Dalmeijer, K., Guan, H., Guhathakurta, S., and Van Hentenryck, P.",
+    title: "Measuring Transit Equity of On-demand Multimodal Transit System",
+    venue: "Journal of the American Planning Association",
+    links: [doi("10.1080/01944363.2024.2323470")],
+  },
+  {
+    id: "P1",
+    kind: "journal",
+    year: 2023,
+    authors: "Ki, D., Chen, Z., Lee, S., and Lieu, S.J.",
+    title: "A Novel Walkability Index Using Google Street View and Deep Learning",
+    venue: "Sustainable Cities and Society",
+    links: [doi("10.1016/j.scs.2023.104896")],
+  },
+
+  // Working papers
+  {
+    id: "W11",
+    kind: "working",
+    year: 2026,
+    authors: "Lieu, S.J.†, Lee, J., Jones, B., Synn, S.H., and Guhathakurta, S.",
+    title: "How complete are your city’s streets? Evaluating the completeness of urban streets using AI and big data",
+    status: "Revision in",
+    venue: "Computers, Environment, and Urban Systems",
+    links: [],
+  },
+  {
+    id: "W10",
+    kind: "working",
+    year: 2026,
+    authors: "Lieu, S.J.† and Akar, G.",
+    title: "School travel without the school bus: Equity implications of distance-based funding thresholds in Georgia",
+    status: "Under review in",
+    venue: "Transportation",
+    links: [],
+  },
+  {
+    id: "W9",
+    kind: "working",
+    year: 2026,
+    authors: "Lieu, S.J.* †, Morra, D.*, Cadoni, C., Song, W., Mazzarello, M., and Ratti, C.",
+    title: "Can VLMs reliably assess sidewalk accessibility attributes from pedestrian-level imagery?",
+    status: "Under review in",
+    venue: "Sustainable Cities and Society",
+    links: [{ label: "arXiv", href: "https://doi.org/10.48550/arXiv.2609.17882" }],
+  },
+  {
+    id: "W8",
+    kind: "working",
+    year: 2026,
+    authors: "Lieu, S.J., Ki, D., and Guhathakurta, S.",
+    title:
+      "From streetscape elements to spatial configuration: Theory-grounded measurement with multimodal large language models",
+    status: "Under review in",
+    venue: "Landscape and Urban Planning",
+    links: [],
+  },
+  {
+    id: "W7",
+    kind: "working",
+    year: 2026,
+    authors: "Lieu, S.J.†, Han, C., and Guhathakurta, S.",
+    title:
+      "Accessibility uncertainty: How built environments and social homogeneity shape within-neighborhood travel variance",
+    status: "Under review in",
+    venue: "Journal of Transport Geography",
+    links: [],
+  },
+  {
+    id: "W6",
+    kind: "working",
+    year: 2026,
+    authors: "Ki, D., Lieu, S.J.†, and Guhathakurta, S.",
+    title:
+      "Revealing socioeconomic bias in mesoscale-based streetscape metrics: Leveraging MLLMs to capture microscale quality",
+    status: "Under review in",
+    venue: "Landscape and Urban Planning",
+    links: [],
+  },
+  {
+    id: "W5",
+    kind: "working",
+    year: 2026,
+    authors: "Ha, J., Lieu, S.J., Zhang, K., and Ki, D.",
+    title: "From potential access to realized response: Evidence from 2.4 million emergency incidents in South Korea",
+    status: "Under review in",
+    venue: "Journal of Transport Geography",
+    links: [],
+  },
+  {
+    id: "W4",
+    kind: "working",
+    year: 2026,
+    authors: "Ki, D. and Lieu, S.J.",
+    title: "Do MLLMs Perceive Streetscapes Like Humans? Uncovering Systematic Biases in Built Environment Perception",
+    status: "Under review in",
+    venue: "Cities",
+    links: [],
+  },
+  {
+    id: "W3",
+    kind: "working",
+    year: 2026,
+    authors: "Lim, S., Lieu, S.J., and Suh, H.",
+    title:
+      "Beyond station access: Bikeshare destination-coverage gaps and residential disadvantage across five U.S. cities",
+    status: "Under review in",
+    venue: "Journal of Transport Geography",
+    links: [],
+  },
+  {
+    id: "W2",
+    kind: "working",
+    year: 2026,
+    authors: "Lieu, S.J. and Basu, R.",
+    title:
+      "Pedal of least resistance: Examining extreme heat-induced substitution between classic and electric bikes within New York City’s bike share system",
+    status: "To be submitted to",
+    venue: "Transportation Research Part D: Transport and Environment",
+    links: [],
+  },
+  {
+    id: "W1",
+    kind: "working",
+    year: 2026,
+    authors: "Morra, D., Lieu, S.J., Choi, K., Cadoni, C., Mazzarello, M., and Ratti, C.",
+    title: "Open Walks: Global Crowdsourced Mapping of Sidewalk Accessibility Using Smartphones and Multimodal AI",
+    status: "To be submitted to",
+    venue: "ISPRS Journal of Photogrammetry and Remote Sensing",
+    links: [],
+  },
+
+  // Reports
+  {
+    id: "R1",
+    kind: "report",
+    year: 2023,
+    authors:
+      "Master, M., Yohanis, S., Hudson, J., Noe, J., Lieu, S.J., Neaves, T., Yuxiang, Z., and Rollins, M.",
+    title: "Urban Design Studio: Home Park Neighborhood Strategic Planning",
+    venue: "",
+    links: [{ label: "Handle", href: "https://hdl.handle.net/1853/70267" }],
+  },
+
+  // Conference presentations
+  {
+    id: "C16",
+    kind: "conference",
+    year: 2026,
+    authors: "Lieu, S.J., Ki, D., and Guhathakurta, S.",
+    title:
+      "Beyond Computer Vision: Integrating Multimodal Large Language Models for Theory-Grounded Measurement of Urban Design for Streetscape Perception",
+    venue: "66th Annual Conference of the Association of Collegiate Schools of Planning, Pittsburgh, PA, USA",
+    links: [],
+  },
+  {
+    id: "C15",
+    kind: "conference",
+    year: 2026,
+    authors: "Lieu, S.J., Lee, J., Jones, B., Synn, S.H., and Guhathakurta, S.†",
+    title: "How complete are your city’s streets? Evaluating the completeness of urban streets using AI and big data",
+    venue: "66th Annual Conference of the Association of Collegiate Schools of Planning, Pittsburgh, PA, USA",
+    links: [],
+  },
+  {
+    id: "C14",
+    kind: "conference",
+    year: 2026,
+    authors: "Basu, R., Lieu, S.J., and Synn, S.H.",
+    title: "Hot Wheels: How Do Bikeshare Usage Patterns Change in Response to Extreme Heat Across American Cities?",
+    venue: "66th Annual Conference of the Association of Collegiate Schools of Planning, Pittsburgh, PA, USA",
+    links: [],
+  },
+  {
+    id: "C13",
+    kind: "conference",
+    year: 2026,
+    authors: "Lieu, S.J. and Guhathakurta, S.",
+    title: "Different Acceptable Travel Times Across Amenity Types: An Empirical Assessment Using U.S. Mobility Data",
+    venue: "2026 Association of American Geographers Annual Meeting, San Francisco, CA, USA",
+    links: [],
+  },
+  {
+    id: "C12",
+    kind: "conference",
+    year: 2026,
+    authors: "Lieu, S.J. and Guhathakurta, S.",
+    title:
+      "Why do residents still drive and travel beyond high-accessibility neighborhoods? Examining the challenges to the 15-minute city concept",
+    venue: "105th Annual Meeting of the Transportation Research Board, Washington, DC, USA",
+    links: [],
+  },
+  {
+    id: "C11",
+    kind: "conference",
+    year: 2025,
+    authors: "Lieu, S.J., Ki, D., and Akar, G.",
+    title: "Route choice behaviors for shared bike users: Visual streetscapes and gender differences",
+    venue: "65th Annual Conference of the Association of Collegiate Schools of Planning, Minneapolis, MN, USA",
+    links: [],
+  },
+  {
+    id: "C10",
+    kind: "conference",
+    year: 2025,
+    authors: "Lieu, S.J. and Akar, G.†",
+    title: "No school bus, no problem? How students get to school without bus service",
+    venue: "65th Annual Conference of the Association of Collegiate Schools of Planning, Minneapolis, MN, USA",
+    links: [],
+  },
+  {
+    id: "C9",
+    kind: "conference",
+    year: 2025,
+    authors: "Park, S.†, Han, C., Lieu, S.J., and Akar, G.",
+    title: "Influence of travel mode and heat sensitivity on streetscape preferences related to thermal comfort",
+    venue: "65th Annual Conference of the Association of Collegiate Schools of Planning, Minneapolis, MN, USA",
+    links: [],
+  },
+  {
+    id: "C8",
+    kind: "conference",
+    year: 2025,
+    authors: "Synn, S.H.†, Jones, B., Lieu, S.J., and Guhathakurta, S.",
+    title: "Street-level transit accessibility: Integrating bus stop quality and transit user locations",
+    venue: "65th Annual Conference of the Association of Collegiate Schools of Planning, Minneapolis, MN, USA",
+    links: [],
+  },
+  {
+    id: "C7",
+    kind: "conference",
+    year: 2025,
+    authors: "Lieu, S.J., Lee, J., Jones, B., Synn, S.H., and Guhathakurta, S.",
+    title:
+      "How complete are your city’s streets? Evaluating the completeness of urban streets using big data and computer vision",
+    venue: "19th International Conference on Computers in Urban Planning and Urban Management, London, United Kingdom",
+    links: [],
+  },
+  {
+    id: "C6",
+    kind: "conference",
+    year: 2025,
+    authors: "Lieu, S.J. and Akar, G.",
+    title: "Investigating mode choice behavior for first and last mile travel among rail users in Atlanta",
+    venue: "104th Annual Meeting of the Transportation Research Board, Washington, DC, USA",
+    links: [],
+  },
+  {
+    id: "C5",
+    kind: "conference",
+    year: 2025,
+    authors: "Lieu, S.J. and Guhathakurta, S.",
+    title: "A novel approach for estimating sidewalk width from street view images and computer vision",
+    venue: "2025 AI and the City: Understanding New Applications in Urban Environments, Bangalore, India",
+    links: [],
+  },
+  {
+    id: "C4",
+    kind: "conference",
+    year: 2024,
+    authors: "Lieu, S.J., Han, C., and Guhathakurta, S.",
+    title: "Aesthetic places and travel destination choices",
+    venue: "64th Annual Conference of the Association of Collegiate Schools of Planning, Seattle, WA, USA",
+    links: [],
+  },
+  {
+    id: "C3",
+    kind: "conference",
+    year: 2023,
+    authors: "Lieu, S.J. and Guhathakurta, S.",
+    title: "Exploring pedestrian route choice preferences by demographic groups: Analysis of street attributes in Chicago",
+    venue: "63rd Annual Conference of the Association of Collegiate Schools of Planning, Chicago, IL, USA",
+    links: [],
+  },
+  {
+    id: "C2",
+    kind: "conference",
+    year: 2023,
+    authors: "Han, C.†, Lieu, S.J., and Guhathakurta, S.",
+    title:
+      "The interplay of aging populations and urban agglomeration: Assessing economic specialization and densification trends in U.S. cities",
+    venue: "63rd Annual Conference of the Association of Collegiate Schools of Planning, Chicago, IL, USA",
+    links: [],
+  },
+  {
+    id: "C1",
+    kind: "conference",
+    year: 2023,
+    authors: "Lieu, S.J., Hwang, U., and Guhathakurta, S.",
+    title: "Measuring transit equity for on-demand transit services",
+    venue: "2023 Association of American Geographers Annual Meeting, Denver, CO, USA",
+    links: [],
   },
 ];
