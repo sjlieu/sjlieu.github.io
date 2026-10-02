@@ -93,8 +93,10 @@ export const KEYWORDS = [
   "Micromobility",
   "Shared Mobility",
   "Transit",
+  "Accessibility",
   "Complete Streets",
   "Equity",
+  "School Transportation",
   "Extreme Heat",
   "Urban Analytics",
   "Planning Practice",
@@ -119,6 +121,7 @@ export type Project = {
   links: Link[];
 };
 
+// Order matters: the first six cards are shown; the rest open with the + button.
 export const projects: Project[] = [
   {
     id: "routable-networks",
@@ -138,63 +141,6 @@ export const projects: Project[] = [
         href: "https://github.com/remap-research-group/routable-mobility-networks/tree/main/pedestrian_network",
       },
     ],
-  },
-  {
-    id: "bikeshare-insights",
-    title: "Behavioral Insights from City-wide Bikeshare Trip Data",
-    cover: "",
-    funding: "",
-    keywords: ["Micromobility", "Shared Mobility", "Travel Behavior", "Extreme Heat", "Equity"],
-    details: [
-      {
-        text: "Among bikeshare users, explored the extent to which subscription commitment coincides with observed frequent use.",
-      },
-      {
-        text: "Examined whether extreme heat leads New York City bike share riders to switch from classic bikes to e-bikes on the same routes, and whether the built environment shapes that switch.",
-        refs: ["W2"],
-      },
-      {
-        text: "Measured how well bikeshare networks in five U.S. cities reach the destinations residents actually travel to, and whether these coverage gaps are larger in socioeconomically disadvantaged neighborhoods.",
-        refs: ["W3"],
-      },
-      {
-        text: "Compared how younger and older bike share users in Seoul trade off trip distance against streetscape qualities and midblock conflicts with cars when choosing routes.",
-        refs: ["P9"],
-      },
-    ],
-    links: [],
-  },
-  {
-    id: "e-scooter-heat",
-    title: "Travel Behavior Analysis of Shared E-scooter Users",
-    cover: "",
-    funding: "",
-    keywords: ["Micromobility", "Shared Mobility", "Travel Behavior", "Extreme Heat"],
-    details: [
-      { text: "Examined how e-scooter users changed their travel behavior under extreme heat exposure." },
-      {
-        text: "Explored how e-scooter users choose a fare mode (Eco, Standard, or Turbo) when paying more buys a higher top speed, depending on heat exposure and route friction such as bike lanes, pedestrian volume, and traffic signals.",
-      },
-    ],
-    links: [],
-  },
-  {
-    id: "open-walks",
-    title: "Open Walks",
-    cover: "/projects/open-walks.jpg",
-    funding: "",
-    keywords: ["Vision AI", "Walking"],
-    details: [
-      {
-        text: "Developed a tool to capture sidewalk attributes (e.g., width, slope, surface material) at global scale from crowdsourced video data using vision AI.",
-        refs: ["W1"],
-      },
-      {
-        text: "Quantified the uncertainty of visual language models when assessing sidewalk attributes via conformal prediction.",
-        refs: ["W9"],
-      },
-    ],
-    links: [{ label: "Application", href: "https://openwalks.netlify.app/" }],
   },
   {
     id: "complete-streets",
@@ -224,11 +170,142 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "bikeshare-insights",
+    title: "Behavioral Insights from City-wide Bikeshare Trip Data",
+    cover: "",
+    funding: "",
+    keywords: ["Micromobility", "Shared Mobility", "Travel Behavior", "Extreme Heat", "Equity"],
+    details: [
+      {
+        text: "Among bikeshare users, explored the extent to which subscription commitment coincides with observed frequent use.",
+      },
+      {
+        text: "Examined whether extreme heat leads New York City bike share riders to switch from classic bikes to e-bikes on the same routes, and whether the built environment shapes that switch.",
+        refs: ["W2"],
+      },
+      {
+        text: "Measured how well bikeshare networks in five U.S. cities reach the destinations residents actually travel to, and whether these coverage gaps are larger in socioeconomically disadvantaged neighborhoods.",
+        refs: ["W3"],
+      },
+      {
+        text: "Compared how younger and older bike share users in Seoul trade off trip distance against streetscape qualities and midblock conflicts with cars when choosing routes.",
+        refs: ["P9"],
+      },
+    ],
+    links: [],
+  },
+  {
+    id: "fifteen-minute-city",
+    title: "Beyond Proximity: Rethinking the 15-Minute City",
+    cover: "",
+    funding: "",
+    keywords: ["Accessibility", "Travel Behavior", "Walking", "Urban Analytics"],
+    details: [
+      {
+        text: "Examined why residents of highly accessible Chicago neighborhoods still drive or travel beyond their 15-minute walkshed, introducing a “harmony of amenities” metric that captures how co-located destinations work together.",
+        refs: ["P10", "C12"],
+      },
+    ],
+    links: [],
+  },
+  {
+    id: "open-walks",
+    title: "Open Walks",
+    cover: "/projects/open-walks.jpg",
+    funding: "",
+    keywords: ["Vision AI", "Walking"],
+    details: [
+      {
+        text: "Developed a tool to capture sidewalk attributes (e.g., width, slope, surface material) at global scale from crowdsourced video data using vision AI.",
+        refs: ["W1"],
+      },
+      {
+        text: "Quantified the uncertainty of visual language models when assessing sidewalk attributes via conformal prediction.",
+        refs: ["W9"],
+      },
+    ],
+    links: [{ label: "Application", href: "https://openwalks.netlify.app/" }],
+  },
+  {
+    id: "mllm-streetscapes",
+    title: "Beyond Computer Vision: Measuring Streetscapes with Multimodal LLMs",
+    cover: "",
+    funding: "",
+    keywords: ["Vision AI", "Equity", "Urban Analytics"],
+    details: [
+      {
+        text: "Tested whether multimodal LLMs can capture how streetscape elements are arranged, such as enclosure, transparency, and human scale, and whether this spatial configuration explains perceived safety beyond what computer vision measures.",
+        refs: ["W8", "C16"],
+      },
+      {
+        text: "Examined whether quantity-based streetscape metrics misjudge street conditions systematically by neighborhood socioeconomic status, and whether MLLM-derived quality features such as maintenance and cleanliness reduce that bias.",
+        refs: ["W6"],
+      },
+    ],
+    links: [],
+  },
+  {
+    id: "e-scooter-heat",
+    title: "Travel Behavior Analysis of Shared E-scooter Users",
+    cover: "",
+    funding: "",
+    keywords: ["Micromobility", "Shared Mobility", "Travel Behavior", "Extreme Heat"],
+    details: [
+      { text: "Examined how e-scooter users changed their travel behavior under extreme heat exposure." },
+      {
+        text: "Explored how e-scooter users choose a fare mode (Eco, Standard, or Turbo) when paying more buys a higher top speed, depending on heat exposure and route friction such as bike lanes, pedestrian volume, and traffic signals.",
+      },
+    ],
+    links: [],
+  },
+  {
+    id: "social-homogeneity",
+    title: "Birds of a Feather in Mobility?",
+    cover: "",
+    funding: "",
+    keywords: ["Accessibility", "Equity", "Travel Behavior", "Urban Analytics"],
+    details: [
+      {
+        text: "Introduced accessibility uncertainty, the variance in how far residents of the same neighborhood travel for the same type of amenity, and examined how the built environment and social homogeneity shape it across U.S. metropolitan areas.",
+        refs: ["W7"],
+      },
+    ],
+    links: [],
+  },
+  {
+    id: "pedestrian-route-choice",
+    title: "Street Design and Pedestrian Route Choice",
+    cover: "",
+    funding: "",
+    keywords: ["Walking", "Travel Behavior", "Vision AI"],
+    details: [
+      {
+        text: "Examined how pedestrians in Chicago trade off extra walking distance against street attributes such as amenities, parks, sky visibility, turns, and slopes, and how these preferences differ by gender, age, and income.",
+        refs: ["P3", "C3"],
+      },
+    ],
+    links: [],
+  },
+  {
+    id: "school-travel",
+    title: "School Transportation Without the School Bus",
+    cover: "",
+    funding: "",
+    keywords: ["School Transportation", "Walking", "Equity", "Travel Behavior"],
+    details: [
+      {
+        text: "Examined how children travel to school when Georgia’s 1.5-mile distance threshold leaves them ineligible for state-funded bus service, and whether socially vulnerable communities bear more of that burden.",
+        refs: ["W10", "C10"],
+      },
+    ],
+    links: [],
+  },
+  {
     id: "odmts-equity",
     title: "Transit Equity Implications of On-Demand Multimodal Transit System",
     cover: "/projects/transit-equity.jpg",
     funding: "National Science Foundation (Grant no. CMMI-1854684)",
-    keywords: ["Transit", "Equity", "Shared Mobility"],
+    keywords: ["Transit", "Equity", "Accessibility", "Shared Mobility"],
     details: [
       {
         text: "Examined the impact of the ODMTS on transit equity and equality by comparing it with the existing public transit system in Atlanta.",

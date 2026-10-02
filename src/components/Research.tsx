@@ -92,10 +92,22 @@ function ProjectCard({ project, onKeyword }: { project: Project; onKeyword: (key
   );
 }
 
+// At most this many cards show at once; the rest open with the + button.
+const INITIAL_COUNT = 6;
+
 export function Research() {
-  const [filter, setFilter] = useState<Keyword | null>(null);
+  const [filter, setFilterState] = useState<Keyword | null>(null);
+  const [expanded, setExpanded] = useState(false);
   const keywords = KEYWORDS.filter((keyword) => projects.some((p) => p.keywords.includes(keyword)));
-  const visible = filter ? projects.filter((p) => p.keywords.includes(filter)) : projects;
+  const matching = filter ? projects.filter((p) => p.keywords.includes(filter)) : projects;
+  const hiddenCount = Math.max(0, matching.length - INITIAL_COUNT);
+  const shown = expanded ? matching : matching.slice(0, INITIAL_COUNT);
+
+  // A new filter starts collapsed again.
+  const setFilter = (next: Keyword | null) => {
+    setFilterState(next);
+    setExpanded(false);
+  };
 
   return (
     <>
@@ -115,13 +127,29 @@ export function Research() {
         ))}
       </div>
       <p className="sr-only" aria-live="polite">
-        {filter ? `Showing ${visible.length} ${filter} projects` : `Showing all ${projects.length} projects`}
+        {`Showing ${shown.length} of ${matching.length} ${filter ?? ""} projects`}
       </p>
-      <ul className="project-grid">
-        {visible.map((project) => (
+      <ul id="project-grid" className="project-grid">
+        {shown.map((project) => (
           <ProjectCard key={project.id} project={project} onKeyword={setFilter} />
         ))}
       </ul>
+      {hiddenCount ? (
+        <div className="more-row">
+          <button
+            type="button"
+            className="more-button"
+            aria-expanded={expanded}
+            aria-controls="project-grid"
+            onClick={() => setExpanded(!expanded)}
+          >
+            <span className="more-icon" aria-hidden="true">
+              {expanded ? "−" : "+"}
+            </span>
+            {expanded ? "Show fewer projects" : `${hiddenCount} more project${hiddenCount > 1 ? "s" : ""}`}
+          </button>
+        </div>
+      ) : null}
     </>
   );
 }

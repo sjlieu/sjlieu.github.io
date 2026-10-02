@@ -451,6 +451,53 @@ button {
   list-style: none;
 }
 
+.more-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.more-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px 8px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: rgba(7, 9, 20, 0.6);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.more-icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(230, 200, 121, 0.55);
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--gold);
+  transition: background 0.2s, color 0.2s;
+}
+
+.more-button:hover,
+.more-button:focus-visible {
+  border-color: rgba(230, 200, 121, 0.6);
+  color: var(--text);
+}
+
+.more-button:hover .more-icon,
+.more-button:focus-visible .more-icon {
+  background: var(--gold);
+  color: #0e1222;
+}
+
 .card {
   perspective: 1600px;
 }
