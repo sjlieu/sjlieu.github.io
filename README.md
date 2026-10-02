@@ -61,3 +61,16 @@ Fragment Mono font (`src/shaders/fonts/`, extracted from the `@designcodeio/thre
 and hash-checked) are unmodified. The published component only renders demo items, so
 `src/components/SiteDock.tsx` rebuilds its sable markup with this site's sections; the demo wrapper
 and the retro/glass WebGL variants (which need Three.js r128) are not included.
+
+## Cover image credits
+
+- `public/projects/bikeshare.jpg`: 3D render of the NYC Citi Bike OD pairs from the W2 study
+  (1,881 pairs as arcs; color = average e-bike share) over NYC building footprints extruded by
+  roof height (NYC Open Data `5zhs-2jue`).
+- `public/projects/birds-feather.jpg`: 3D render of Atlanta census tracts (2010) raised by
+  restaurant-trip accessibility uncertainty (W7 data), with restaurant trips from tract
+  13121011419 as arcs colored by home block group.
+- Both are rendered with deck.gl from the pages in `cover-originals/render3d/` (local only; serve
+  that folder, e.g. `python3 -m http.server`, and open `index.html` or `atl.html`).
+- `public/projects/e-scooter.jpg`, `pedestrian.jpg`, `school-bus.jpg`: free photos from
+  [Unsplash](https://unsplash.com/license) (Unsplash License; no attribution required).

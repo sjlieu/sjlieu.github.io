@@ -177,14 +177,6 @@ button {
   background: radial-gradient(ellipse 55% 55% at 45% 50%, rgba(7, 9, 20, 0.85), rgba(7, 9, 20, 0) 100%);
 }
 
-.eyebrow {
-  margin: 0 0 14px;
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--gold);
-}
-
 .hero h1 {
   margin: 0;
   font-weight: 400;
@@ -193,12 +185,35 @@ button {
   letter-spacing: -0.02em;
 }
 
-.tagline {
-  max-width: 40rem;
-  margin: 24px 0 0;
-  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+/* A quiet line above the name: small italic quote with its author on the same line. */
+.hero-quote {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  max-width: 44rem;
+  margin: 0 0 18px;
+}
+
+.hero-quote blockquote {
+  margin: 0;
+  font-size: 0.95rem;
+  font-style: italic;
   line-height: 1.5;
   color: var(--muted);
+}
+
+.hero-quote figcaption {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+}
+
+.hero-role {
+  margin: 20px 0 0;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  letter-spacing: 0.01em;
+  color: var(--gold);
 }
 
 .link-row {
@@ -318,7 +333,6 @@ button {
 /* About */
 
 .bio {
-  max-width: 64rem;
   margin-bottom: 44px;
 }
 
@@ -333,6 +347,21 @@ button {
   gap: clamp(28px, 4vw, 64px);
   padding-top: 36px;
   border-top: 1px solid var(--border);
+}
+
+/* Each column scrolls on its own once it is taller than this. */
+.timeline-scroll {
+  max-height: 340px;
+  overflow-y: auto;
+  /* room for the timeline dots, which sit just left of the line */
+  margin-left: -6px;
+  padding-left: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+.timeline-scroll.more-below {
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 48px), transparent);
 }
 
 .timeline {
@@ -542,10 +571,10 @@ button {
 
 .cover {
   display: block;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   border-bottom: 1px solid var(--border);
-  background: #0b0f1f;
+  background: #fff;
 }
 
 .cover img,
@@ -553,9 +582,14 @@ button {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   transition: transform 0.5s ease;
+}
+
+/* Images show whole by default; "cover" fills the frame and crops the edges. */
+.cover--fill img {
+  object-fit: cover;
 }
 
 .front:hover .cover :is(img, svg) {

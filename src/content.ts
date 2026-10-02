@@ -7,12 +7,16 @@ export const profile = {
   name: "Seung Jae Lieu",
   // How your name appears in author lists; it is bolded in Publications.
   authorName: "Lieu, S.J.",
-  eyebrow: "Ph.D. Student · City and Regional Planning · Georgia Tech",
+  // Shown under the name on the landing page.
+  role: "Ph.D. Student · City and Regional Planning · Georgia Tech",
   // Put a square photo in public/ (e.g. public/profile.jpg) and set "/profile.jpg".
   // Empty shows a placeholder circle.
-  photo: "",
-  tagline:
-    "I study how streets and neighborhoods shape the way people walk, bike, ride transit, and drive — combining travel-behavior models with vision AI and urban big data.",
+  photo: "/projects/Lieu_headshot.jpg",
+  // Small quote shown above the name on the landing page.
+  quote: {
+    text: "First life, then spaces, then buildings – the other way around never works.",
+    author: "Jan Gehl",
+  },
 
   links: [
     { label: "Email", href: "mailto:slieu3@gatech.edu" },
@@ -31,13 +35,13 @@ export const profile = {
     {
       title: "Ph.D., City and Regional Planning",
       org: "Georgia Institute of Technology",
-      dates: "Present",
+      dates: "Aug 2023 - Present",
       note: "Advisors: Dr. Subhrajit Guhathakurta, Dr. Gulsah Akar",
     },
     {
       title: "M.S., Urban Analytics",
       org: "Georgia Institute of Technology",
-      dates: "Present",
+      dates: "Aug 2024 - Present",
     },
     {
       title: "M.S., Civil and Environmental Engineering\nMaster of City and Regional Planning",
@@ -58,14 +62,14 @@ export const profile = {
       title: "Graduate Research Assistant",
       org: "Center for Urban Resilience and Analytics, Georgia Tech",
       href: "https://resilience.research.gatech.edu/",
-      dates: "Aug 2021 – Present",
+      dates: "Present",
       note: "Supervisor: Dr. Subhrajit Guhathakurta",
     },
     {
       title: "Graduate Research Assistant",
       org: "Resilient and Equitable Mobility Analytics and Planning Lab, Georgia Tech",
-      href: "", // TODO: add the lab's website
-      dates: "Jan 2026 – Present",
+      href: "",
+      dates: "Present",
       note: "Supervisor: Dr. Rounaq Basu",
     },
     {
@@ -75,10 +79,23 @@ export const profile = {
       dates: "Feb 2026 – Aug 2026",
     },
     {
+      title: "Data Analyst",
+      org: "Atlanta Regional Commission",
+      href: "https://atlantaregional.org/",
+      dates: "May 2022 – Aug 2022",
+      note: "Supervisor: Wei Wang, AICP",
+    },
+    {
       title: "Undergraduate Research Assistant",
       org: "Urban Design and Spatial Analytics Lab, Hanyang University",
       href: "https://junhwan89.cafe24.com/",
       dates: "Mar 2020 – May 2021",
+    },
+    {
+      title: "Legislative Aide",
+      org: "Seoul Metropolitan Council Transportation Committee",
+      href: "https://www.smc.seoul.kr/",
+      dates: "Dec 2019 – Mar 2020",
     },
   ],
 };
@@ -114,6 +131,12 @@ export type Project = {
   title: string;
   // Path to an image in public/ (e.g. "/projects/my-project.jpg"). Empty draws a generated cover.
   cover: string;
+  // Images are shown whole inside the 3:2 frame, with white filling any gap.
+  // Set "cover" to fill the frame instead (the edges are cropped); good for photos.
+  coverFit?: "contain" | "cover";
+  // Color behind the image (default: white), e.g. "#070914" to match the site background
+  // for images with a dark background.
+  coverBackground?: string;
   // Shown as "Funded by …" under the title on the back; empty shows "Independent work".
   funding: string;
   keywords: Keyword[];
@@ -126,7 +149,7 @@ export const projects: Project[] = [
   {
     id: "routable-networks",
     title: "Boston Region Routable Mobility Networks",
-    cover: "",
+    cover: "/projects/mobility-network.png",
     funding: "Boston Region MPO",
     keywords: ["Vision AI", "Walking", "Urban Analytics"],
     details: [
@@ -172,7 +195,8 @@ export const projects: Project[] = [
   {
     id: "bikeshare-insights",
     title: "Behavioral Insights from City-wide Bikeshare Trip Data",
-    cover: "",
+    cover: "/projects/bikeshare.jpg",
+    coverFit: "cover",
     funding: "",
     keywords: ["Micromobility", "Shared Mobility", "Travel Behavior", "Extreme Heat", "Equity"],
     details: [
@@ -197,7 +221,8 @@ export const projects: Project[] = [
   {
     id: "fifteen-minute-city",
     title: "Beyond Proximity: Rethinking the 15-Minute City",
-    cover: "",
+    cover: "/projects/15minute.jpg",
+    coverFit: "cover",
     funding: "",
     keywords: ["Accessibility", "Travel Behavior", "Walking", "Urban Analytics"],
     details: [
@@ -212,6 +237,7 @@ export const projects: Project[] = [
     id: "open-walks",
     title: "Open Walks",
     cover: "/projects/open-walks.jpg",
+    coverFit: "cover",
     funding: "",
     keywords: ["Vision AI", "Walking"],
     details: [
@@ -229,7 +255,8 @@ export const projects: Project[] = [
   {
     id: "mllm-streetscapes",
     title: "Beyond Computer Vision: Measuring Streetscapes with Multimodal LLMs",
-    cover: "",
+    cover: "/projects/llm.jpg",
+    coverFit: "cover",
     funding: "",
     keywords: ["Vision AI", "Equity", "Urban Analytics"],
     details: [
@@ -247,7 +274,8 @@ export const projects: Project[] = [
   {
     id: "e-scooter-heat",
     title: "Travel Behavior Analysis of Shared E-scooter Users",
-    cover: "",
+    cover: "/projects/e-scooter.jpg",
+    coverFit: "cover",
     funding: "",
     keywords: ["Micromobility", "Shared Mobility", "Travel Behavior", "Extreme Heat"],
     details: [
@@ -261,7 +289,8 @@ export const projects: Project[] = [
   {
     id: "social-homogeneity",
     title: "Birds of a Feather in Mobility?",
-    cover: "",
+    cover: "/projects/birds-feather.jpg",
+    coverFit: "cover",
     funding: "",
     keywords: ["Accessibility", "Equity", "Travel Behavior", "Urban Analytics"],
     details: [
@@ -275,7 +304,8 @@ export const projects: Project[] = [
   {
     id: "pedestrian-route-choice",
     title: "Street Design and Pedestrian Route Choice",
-    cover: "",
+    cover: "/projects/pedestrian.jpg",
+    coverFit: "cover",
     funding: "",
     keywords: ["Walking", "Travel Behavior", "Vision AI"],
     details: [
@@ -289,7 +319,8 @@ export const projects: Project[] = [
   {
     id: "school-travel",
     title: "School Transportation Without the School Bus",
-    cover: "",
+    cover: "/projects/school-bus.jpg",
+    coverFit: "cover",
     funding: "",
     keywords: ["School Transportation", "Walking", "Equity", "Travel Behavior"],
     details: [
@@ -304,6 +335,7 @@ export const projects: Project[] = [
     id: "odmts-equity",
     title: "Transit Equity Implications of On-Demand Multimodal Transit System",
     cover: "/projects/transit-equity.jpg",
+    coverFit: "cover",
     funding: "National Science Foundation (Grant no. CMMI-1854684)",
     keywords: ["Transit", "Equity", "Accessibility", "Shared Mobility"],
     details: [
@@ -318,7 +350,7 @@ export const projects: Project[] = [
   {
     id: "home-park-studio",
     title: "Home Park Planning Studio",
-    cover: "",
+    cover: "/projects/planning-studio.jpg",
     funding: "",
     keywords: ["Planning Practice"],
     details: [

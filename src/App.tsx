@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import { LinkIcon, PersonPlaceholder } from "./components/Icons";
 import { Conferences, Publications } from "./components/Publications";
@@ -24,27 +24,42 @@ function Section({ id, label, children }: { id: string; label: string; children:
 }
 
 function Timeline({ title, items }: { title: string; items: TimelineItem[] }) {
+  const listRef = useRef<HTMLDivElement>(null);
+  // Long lists scroll inside the panel; fade the bottom edge while more is hidden below.
+  const [moreBelow, setMoreBelow] = useState(false);
+  const update = () => {
+    const el = listRef.current;
+    if (el) setMoreBelow(el.scrollTop + el.clientHeight < el.scrollHeight - 2);
+  };
+  useEffect(() => {
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   return (
     <div>
       <h3 className="sub-label">{title}</h3>
-      <ol className="timeline">
-        {items.map((item) => (
-          <li key={item.title + item.org + item.dates}>
-            <div className="timeline-head">
-              <span className="timeline-title">{item.title}</span>
-              <span className="timeline-dates">{item.dates}</span>
-            </div>
-            {item.href ? (
-              <a href={item.href} target="_blank" rel="noreferrer" className="timeline-org">
-                {item.org} <span aria-hidden="true">↗</span>
-              </a>
-            ) : (
-              <span className="muted">{item.org}</span>
-            )}
-            {item.note ? <span className="faint">{item.note}</span> : null}
-          </li>
-        ))}
-      </ol>
+      <div ref={listRef} className={`timeline-scroll${moreBelow ? " more-below" : ""}`} onScroll={update}>
+        <ol className="timeline">
+          {items.map((item) => (
+            <li key={item.title + item.org + item.dates}>
+              <div className="timeline-head">
+                <span className="timeline-title">{item.title}</span>
+                <span className="timeline-dates">{item.dates}</span>
+              </div>
+              {item.href ? (
+                <a href={item.href} target="_blank" rel="noreferrer" className="timeline-org">
+                  {item.org} <span aria-hidden="true">↗</span>
+                </a>
+              ) : (
+                <span className="muted">{item.org}</span>
+              )}
+              {item.note ? <span className="faint">{item.note}</span> : null}
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
   );
 }
@@ -59,9 +74,12 @@ export default function App() {
       <main id="top" className="page">
         <section className="hero">
           <div className="hero-text">
-            <p className="eyebrow">{profile.eyebrow}</p>
+            <figure className="hero-quote">
+              <blockquote>“{profile.quote.text}”</blockquote>
+              <figcaption>— {profile.quote.author}</figcaption>
+            </figure>
             <h1>{profile.name}</h1>
-            <p className="tagline">{profile.tagline}</p>
+            <p className="hero-role">{profile.role}</p>
             <ul className="link-row">
               {links.map((link) => (
                 <li key={link.label}>
@@ -90,7 +108,7 @@ export default function App() {
           </div>
           <div className="cv-grid">
             <Timeline title="Education" items={profile.education} />
-            <Timeline title="Research Experience" items={profile.researchExperience} />
+            <Timeline title="Research and Work Experience" items={profile.researchExperience} />
           </div>
         </Section>
 
