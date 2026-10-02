@@ -372,7 +372,8 @@ export const publications: Publication[] = [
     links: [doi("10.1016/j.scs.2023.104896")],
   },
 
-  // Working papers
+  // Working papers: not listed on the site. Project cards that cite them show
+  // "Paper under review" (Revision / Under review) or "Manuscript in preparation".
   {
     id: "W11",
     kind: "working",

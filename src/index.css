@@ -37,7 +37,7 @@
   --blue: #7fc4ff;
   --font: "D-DIN", "DIN Alternate", "Bahnschrift", system-ui, -apple-system, "Segoe UI", sans-serif;
   --radius: 18px;
-  --nav-height: 60px;
+  --nav-height: 96px;
   --gutter: clamp(16px, 3vw, 48px);
 
   color-scheme: dark;
@@ -112,61 +112,44 @@ button {
   pointer-events: auto;
 }
 
-/* ---------- Nav ---------- */
+/* ---------- Top dock (ThreeUI AnimatedTopDock, sable) ----------
+   The authored component is a full demo frame with its own dark backdrop and grain.
+   Here it is a fixed, zero-height strip so only the capsule shows over the page. */
 
-.nav {
+.animated-top-dock-component.site-dock {
   position: fixed;
   inset: 0 0 auto;
-  z-index: 2;
-  height: var(--nav-height);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 0 max(var(--gutter), calc((100vw - 1480px) / 2 + var(--gutter)));
-  background: rgba(14, 18, 34, 0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  z-index: 20;
+  height: 0;
+  overflow: visible;
+  background: none;
+  pointer-events: none;
 }
 
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
+.animated-top-dock-component.site-dock::after {
+  display: none;
+}
+
+.site-dock .animated-top-dock__nav {
+  pointer-events: auto;
+}
+
+.site-dock .animated-top-dock__item {
   text-decoration: none;
-  letter-spacing: 0.02em;
 }
 
-.nav-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 12px rgba(230, 200, 121, 0.6);
+/* Section names are longer than the demo's five-letter labels, so links size to them. */
+.site-dock .animated-top-dock__link {
+  width: auto;
+  padding: 0 11px;
 }
 
-.nav nav {
-  display: flex;
-  gap: 32px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.nav nav a {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--muted);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: color 0.2s;
-}
-
-.nav nav a:hover,
-.nav nav a:focus-visible {
-  color: var(--text);
+/* The current section gets the authored "pressed" look. */
+.site-dock .animated-top-dock__link[aria-current="location"] {
+  color: #111;
+  border-color: #e8e8e3;
+  background: #e8e8e3;
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.28);
 }
 
 /* ---------- Hero ---------- */
@@ -587,6 +570,17 @@ button {
   transition: background 0.2s;
 }
 
+.pub-pending {
+  padding: 0 7px;
+  border-radius: 5px;
+  border: 1px solid rgba(230, 200, 121, 0.4);
+  background: rgba(230, 200, 121, 0.08);
+  font-size: 0.74rem;
+  line-height: 1.5;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
 .pub-ref:hover,
 .pub-ref:focus-visible {
   background: rgba(127, 196, 255, 0.22);
@@ -711,28 +705,6 @@ button {
 
 .pub-group + .pub-group {
   margin-top: 40px;
-}
-
-details.pub-group summary {
-  list-style: none;
-  cursor: pointer;
-}
-
-details.pub-group summary::-webkit-details-marker {
-  display: none;
-}
-
-details.pub-group summary .sub-label::after {
-  content: " +";
-  color: var(--faint);
-}
-
-details.pub-group[open] summary .sub-label::after {
-  content: " −";
-}
-
-details.pub-group .legend {
-  margin-top: -6px;
 }
 
 .pubs {
@@ -861,14 +833,6 @@ details.pub-group .legend {
 }
 
 @media (max-width: 640px) {
-  .nav-brand {
-    display: none;
-  }
-
-  .nav {
-    justify-content: center;
-  }
-
   .timeline-head {
     flex-direction: column;
     gap: 0;

@@ -1,19 +1,14 @@
 import type { ReactNode } from "react";
 
 import { LinkIcon, PersonPlaceholder } from "./components/Icons";
-import { Publications } from "./components/Publications";
+import { Conferences, Publications } from "./components/Publications";
 import { Research } from "./components/Research";
+import { SiteDock } from "./components/SiteDock";
 import { profile } from "./content";
 import { ConstellationField } from "./shaders/constellation-field/ConstellationField";
 import "./shaders/threeui.css";
 
 const YEAR = new Date().getFullYear();
-
-const SECTIONS = [
-  { id: "about", label: "About" },
-  { id: "research", label: "Research" },
-  { id: "publications", label: "Publications" },
-];
 
 type TimelineItem = { title: string; org: string; href?: string; dates: string; note?: string };
 
@@ -59,19 +54,7 @@ export default function App() {
 
   return (
     <>
-      <header className="nav">
-        <a href="#top" className="nav-brand">
-          <span className="nav-dot" aria-hidden="true" />
-          {profile.name}
-        </a>
-        <nav aria-label="Sections">
-          {SECTIONS.map((section) => (
-            <a key={section.id} href={`#${section.id}`}>
-              {section.label}
-            </a>
-          ))}
-        </nav>
-      </header>
+      <SiteDock />
 
       <main id="top" className="page">
         <section className="hero">
@@ -117,6 +100,10 @@ export default function App() {
 
         <Section id="publications" label="Publications">
           <Publications />
+        </Section>
+
+        <Section id="conferences" label="Conferences">
+          <Conferences />
         </Section>
 
         <footer className="footer">

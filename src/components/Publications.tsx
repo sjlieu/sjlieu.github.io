@@ -1,26 +1,24 @@
-import type { MouseEvent } from "react";
-
 import { profile, publications, type Publication, type PublicationKind } from "../content";
-
-const GROUPS: { kind: PublicationKind; title: string; legend?: string; collapsed?: boolean }[] = [
-  { kind: "journal", title: "Peer-Reviewed Papers" },
-  { kind: "working", title: "Working Papers" },
-  { kind: "report", title: "Reports" },
-  { kind: "conference", title: "Conference Presentations", legend: "† Presented by co-author", collapsed: true },
-];
 
 const byId = new Map(publications.map((pub) => [pub.id, pub]));
 
-/** Link to an entry in the list; opens the collapsed conference group first if needed. */
+// Working papers are not listed on the site; a card shows their status instead of an id.
+function pendingLabel(pub: Publication) {
+  return pub.status === "Working manuscript" ? "Manuscript in preparation" : "Paper under review";
+}
+
+/** A project card's reference: links to a listed paper or talk, or shows a working paper's status. */
 export function PublicationRef({ id }: { id: string }) {
   const pub = byId.get(id);
-  const reveal = (event: MouseEvent) => {
-    event.stopPropagation();
-    const details = document.getElementById(`pub-${id}`)?.closest("details");
-    if (details && !details.open) details.open = true;
-  };
+  if (pub?.kind === "working") {
+    return (
+      <span className="pub-pending" title={pub.title}>
+        {pendingLabel(pub)}
+      </span>
+    );
+  }
   return (
-    <a href={`#pub-${id}`} className="pub-ref" title={pub?.title} onClick={reveal}>
+    <a href={`#pub-${id}`} className="pub-ref" title={pub?.title}>
       {id}
     </a>
   );
@@ -67,37 +65,39 @@ function PublicationItem({ pub }: { pub: Publication }) {
   );
 }
 
+function PublicationList({ kind }: { kind: PublicationKind }) {
+  return (
+    <ol className="pubs">
+      {publications
+        .filter((pub) => pub.kind === kind)
+        .map((pub) => (
+          <PublicationItem key={pub.id} pub={pub} />
+        ))}
+    </ol>
+  );
+}
+
 export function Publications() {
   return (
     <>
-      <p className="legend">† Corresponding author · * Equal contribution</p>
-      {GROUPS.map((group) => {
-        const items = publications.filter((pub) => pub.kind === group.kind);
-        if (!items.length) return null;
-        const list = (
-          <>
-            {group.legend ? <p className="legend">{group.legend}</p> : null}
-            <ol className="pubs">
-              {items.map((pub) => (
-                <PublicationItem key={pub.id} pub={pub} />
-              ))}
-            </ol>
-          </>
-        );
-        return group.collapsed ? (
-          <details key={group.kind} className="pub-group">
-            <summary>
-              <h3 className="sub-label">{group.title}</h3>
-            </summary>
-            {list}
-          </details>
-        ) : (
-          <div key={group.kind} className="pub-group">
-            <h3 className="sub-label">{group.title}</h3>
-            {list}
-          </div>
-        );
-      })}
+      <p className="legend">† Corresponding author</p>
+      <div className="pub-group">
+        <h3 className="sub-label">Peer-Reviewed Papers</h3>
+        <PublicationList kind="journal" />
+      </div>
+      <div className="pub-group">
+        <h3 className="sub-label">Reports</h3>
+        <PublicationList kind="report" />
+      </div>
+    </>
+  );
+}
+
+export function Conferences() {
+  return (
+    <>
+      <p className="legend">† Presented by co-author</p>
+      <PublicationList kind="conference" />
     </>
   );
 }

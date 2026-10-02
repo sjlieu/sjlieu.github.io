@@ -51,3 +51,13 @@ contain only a "Stub" comment stand in for variants ThreeUI imports but does not
 
 Tune it via the props on `<ConstellationField />` in `src/App.tsx` (`speed`, `density`, `length`,
 `strokeWidth`, `hue`, `brightness`, …).
+
+## Top navigation
+
+The dock at the top is ThreeUI's **AnimatedTopDock** (sable variant), from
+https://threeui.com/source-code/animated-top-dock.json (SHA-256 verified). Its spring controller
+(`src/shaders/animated-top-dock/topDockController.ts`), its styles (`src/shaders/threeui.css`), and its
+Fragment Mono font (`src/shaders/fonts/`, extracted from the `@designcodeio/threeui` 1.2.0 package
+and hash-checked) are unmodified. The published component only renders demo items, so
+`src/components/SiteDock.tsx` rebuilds its sable markup with this site's sections; the demo wrapper
+and the retro/glass WebGL variants (which need Three.js r128) are not included.
