@@ -15,7 +15,7 @@ const SECTIONS = [
   { id: "publications", label: "Publications" },
 ];
 
-type TimelineItem = { title: string; org: string; place: string; dates: string; note?: string };
+type TimelineItem = { title: string; org: string; href?: string; dates: string; note?: string };
 
 function Section({ id, label, children }: { id: string; label: string; children: ReactNode }) {
   return (
@@ -39,9 +39,13 @@ function Timeline({ title, items }: { title: string; items: TimelineItem[] }) {
               <span className="timeline-title">{item.title}</span>
               <span className="timeline-dates">{item.dates}</span>
             </div>
-            <span className="muted">
-              {item.org} · {item.place}
-            </span>
+            {item.href ? (
+              <a href={item.href} target="_blank" rel="noreferrer" className="timeline-org">
+                {item.org} <span aria-hidden="true">↗</span>
+              </a>
+            ) : (
+              <span className="muted">{item.org}</span>
+            )}
             {item.note ? <span className="faint">{item.note}</span> : null}
           </li>
         ))}

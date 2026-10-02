@@ -408,6 +408,23 @@ button {
   font-size: 0.88rem;
 }
 
+.timeline-org {
+  align-self: flex-start;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.timeline-org span {
+  font-size: 0.8em;
+  color: var(--gold);
+}
+
+.timeline-org:hover,
+.timeline-org:focus-visible {
+  color: var(--blue);
+}
+
 /* ---------- Research projects ---------- */
 
 .filters {
@@ -751,20 +768,6 @@ details.pub-group .legend {
   line-height: 1.4;
 }
 
-.pub-title a {
-  text-decoration: none;
-  background-image: linear-gradient(rgba(127, 196, 255, 0.5), rgba(127, 196, 255, 0.5));
-  background-size: 100% 1px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: color 0.2s;
-}
-
-.pub-title a:hover,
-.pub-title a:focus-visible {
-  color: var(--blue);
-}
-
 .pub-authors {
   margin-top: 4px !important;
   font-size: 0.92rem;
@@ -783,6 +786,10 @@ details.pub-group .legend {
   margin-top: 4px !important;
   font-size: 0.88rem;
   color: var(--faint);
+}
+
+.pub-status {
+  color: var(--gold);
 }
 
 .pub-link {

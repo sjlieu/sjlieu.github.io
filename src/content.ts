@@ -26,63 +26,59 @@ export const profile = {
     "I build tools that measure streets at scale — sidewalk widths, bike lanes, bus stop amenities, and how complete a street is — and use them to understand route choice, mode choice, and equity in access. In 2026 I was a visiting student at the MIT Senseable City Lab, where I worked on Open Walks, a global, crowdsourced map of sidewalk accessibility.",
   ],
 
+  // Education shows only the end date (or "Present").
   education: [
     {
       title: "Ph.D., City and Regional Planning",
       org: "Georgia Institute of Technology",
-      place: "Atlanta, GA",
-      dates: "Aug 2023 – Present",
+      dates: "Present",
       note: "Advisors: Subhrajit Guhathakurta, Gulsah Akar",
     },
     {
       title: "M.S., Urban Analytics",
       org: "Georgia Institute of Technology",
-      place: "Atlanta, GA",
-      dates: "Aug 2024 – Present",
+      dates: "Present",
     },
     {
       title: "M.S., Civil and Environmental Engineering\nMaster of City and Regional Planning",
       org: "Georgia Institute of Technology",
-      place: "Atlanta, GA",
-      dates: "Aug 2021 – May 2023",
+      dates: "May 2023",
       note: "Advisors: Patricia Mokhtarian, Catherine Ross",
     },
     {
       title: "B.S., Urban Engineering",
       org: "Hanyang University",
-      place: "Seoul, South Korea",
-      dates: "Mar 2017 – Feb 2021",
+      dates: "Feb 2021",
     },
   ],
 
+  // `href` turns the group name into a link; leave it out for no link.
   researchExperience: [
     {
       title: "Graduate Research Assistant",
       org: "Center for Urban Resilience and Analytics, Georgia Tech",
-      place: "Atlanta, GA",
+      href: "https://resilience.research.gatech.edu/",
       dates: "Aug 2021 – Present",
       note: "Supervisor: Subhrajit Guhathakurta",
     },
     {
       title: "Graduate Research Assistant",
       org: "Resilient and Equitable Mobility Analytics and Planning Lab, Georgia Tech",
-      place: "Atlanta, GA",
+      href: "", // TODO: add the lab's website
       dates: "Jan 2026 – Present",
       note: "Supervisor: Rounaq Basu",
     },
     {
       title: "Visiting Student",
       org: "Senseable City Lab, Massachusetts Institute of Technology",
-      place: "Cambridge, MA & Seoul, South Korea",
+      href: "https://senseable.mit.edu/",
       dates: "Feb 2026 – Aug 2026",
-      note: "Supervisors: Diego Morra, Martina Mazzarello",
     },
     {
       title: "Undergraduate Research Assistant",
       org: "Urban Design and Spatial Analytics Lab, Hanyang University",
-      place: "Seoul, South Korea",
+      href: "https://junhwan89.cafe24.com/",
       dates: "Mar 2020 – May 2021",
-      note: "Supervisor: Sugie Lee",
     },
   ],
 };
@@ -266,8 +262,8 @@ export type Publication = {
   year: number;
   authors: string;
   title: string;
-  venue: string;
-  status?: string; // shown before the venue, e.g. "Under review in"
+  venue?: string;
+  status?: string; // e.g. "Under review"
   links: Link[]; // the first link is also applied to the title
 };
 
@@ -381,8 +377,7 @@ export const publications: Publication[] = [
     year: 2026,
     authors: "Lieu, S.J.†, Lee, J., Jones, B., Synn, S.H., and Guhathakurta, S.",
     title: "How complete are your city’s streets? Evaluating the completeness of urban streets using AI and big data",
-    status: "Revision in",
-    venue: "Computers, Environment, and Urban Systems",
+    status: "Revision",
     links: [],
   },
   {
@@ -391,8 +386,7 @@ export const publications: Publication[] = [
     year: 2026,
     authors: "Lieu, S.J.† and Akar, G.",
     title: "School travel without the school bus: Equity implications of distance-based funding thresholds in Georgia",
-    status: "Under review in",
-    venue: "Transportation",
+    status: "Under review",
     links: [],
   },
   {
@@ -401,8 +395,7 @@ export const publications: Publication[] = [
     year: 2026,
     authors: "Lieu, S.J.* †, Morra, D.*, Cadoni, C., Song, W., Mazzarello, M., and Ratti, C.",
     title: "Can VLMs reliably assess sidewalk accessibility attributes from pedestrian-level imagery?",
-    status: "Under review in",
-    venue: "Sustainable Cities and Society",
+    status: "Under review",
     links: [{ label: "arXiv", href: "https://doi.org/10.48550/arXiv.2609.17882" }],
   },
   {
@@ -412,8 +405,7 @@ export const publications: Publication[] = [
     authors: "Lieu, S.J., Ki, D., and Guhathakurta, S.",
     title:
       "From streetscape elements to spatial configuration: Theory-grounded measurement with multimodal large language models",
-    status: "Under review in",
-    venue: "Landscape and Urban Planning",
+    status: "Under review",
     links: [],
   },
   {
@@ -423,8 +415,7 @@ export const publications: Publication[] = [
     authors: "Lieu, S.J.†, Han, C., and Guhathakurta, S.",
     title:
       "Accessibility uncertainty: How built environments and social homogeneity shape within-neighborhood travel variance",
-    status: "Under review in",
-    venue: "Journal of Transport Geography",
+    status: "Under review",
     links: [],
   },
   {
@@ -434,8 +425,7 @@ export const publications: Publication[] = [
     authors: "Ki, D., Lieu, S.J.†, and Guhathakurta, S.",
     title:
       "Revealing socioeconomic bias in mesoscale-based streetscape metrics: Leveraging MLLMs to capture microscale quality",
-    status: "Under review in",
-    venue: "Landscape and Urban Planning",
+    status: "Under review",
     links: [],
   },
   {
@@ -444,8 +434,7 @@ export const publications: Publication[] = [
     year: 2026,
     authors: "Ha, J., Lieu, S.J., Zhang, K., and Ki, D.",
     title: "From potential access to realized response: Evidence from 2.4 million emergency incidents in South Korea",
-    status: "Under review in",
-    venue: "Journal of Transport Geography",
+    status: "Under review",
     links: [],
   },
   {
@@ -454,8 +443,7 @@ export const publications: Publication[] = [
     year: 2026,
     authors: "Ki, D. and Lieu, S.J.",
     title: "Do MLLMs Perceive Streetscapes Like Humans? Uncovering Systematic Biases in Built Environment Perception",
-    status: "Under review in",
-    venue: "Cities",
+    status: "Under review",
     links: [],
   },
   {
@@ -465,8 +453,7 @@ export const publications: Publication[] = [
     authors: "Lim, S., Lieu, S.J., and Suh, H.",
     title:
       "Beyond station access: Bikeshare destination-coverage gaps and residential disadvantage across five U.S. cities",
-    status: "Under review in",
-    venue: "Journal of Transport Geography",
+    status: "Under review",
     links: [],
   },
   {
@@ -476,8 +463,7 @@ export const publications: Publication[] = [
     authors: "Lieu, S.J. and Basu, R.",
     title:
       "Pedal of least resistance: Examining extreme heat-induced substitution between classic and electric bikes within New York City’s bike share system",
-    status: "To be submitted to",
-    venue: "Transportation Research Part D: Transport and Environment",
+    status: "Working manuscript",
     links: [],
   },
   {
@@ -486,8 +472,7 @@ export const publications: Publication[] = [
     year: 2026,
     authors: "Morra, D., Lieu, S.J., Choi, K., Cadoni, C., Mazzarello, M., and Ratti, C.",
     title: "Open Walks: Global Crowdsourced Mapping of Sidewalk Accessibility Using Smartphones and Multimodal AI",
-    status: "To be submitted to",
-    venue: "ISPRS Journal of Photogrammetry and Remote Sensing",
+    status: "Working manuscript",
     links: [],
   },
 

@@ -41,28 +41,19 @@ function Authors({ text }: { text: string }) {
 }
 
 function PublicationItem({ pub }: { pub: Publication }) {
-  const primary = pub.links[0];
   return (
     <li id={`pub-${pub.id}`} className="pub">
       <span className="pub-id">{pub.id}</span>
       <div className="pub-body">
-        <p className="pub-title">
-          {primary ? (
-            <a href={primary.href} target="_blank" rel="noreferrer">
-              {pub.title}
-            </a>
-          ) : (
-            pub.title
-          )}
-        </p>
+        <p className="pub-title">{pub.title}</p>
         <p className="pub-authors">
           <Authors text={pub.authors} />
         </p>
         <p className="pub-meta">
           <span>
-            {pub.status ? `${pub.status} ` : ""}
+            {pub.status ? <span className="pub-status">{pub.status}</span> : null}
             {pub.venue ? <em>{pub.venue}</em> : null}
-            {pub.venue ? " · " : ""}
+            {pub.status || pub.venue ? " · " : ""}
             {pub.year}
           </span>
           {pub.links.map((link) => (
@@ -96,17 +87,13 @@ export function Publications() {
         return group.collapsed ? (
           <details key={group.kind} className="pub-group">
             <summary>
-              <h3 className="sub-label">
-                {group.title} <span className="count">{items.length}</span>
-              </h3>
+              <h3 className="sub-label">{group.title}</h3>
             </summary>
             {list}
           </details>
         ) : (
           <div key={group.kind} className="pub-group">
-            <h3 className="sub-label">
-              {group.title} <span className="count">{items.length}</span>
-            </h3>
+            <h3 className="sub-label">{group.title}</h3>
             {list}
           </div>
         );
