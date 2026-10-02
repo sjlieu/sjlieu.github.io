@@ -22,8 +22,8 @@ export const profile = {
   ] satisfies Link[],
 
   bio: [
-    "I am a Ph.D. student in City and Regional Planning at the Georgia Institute of Technology, advised by Subhrajit Guhathakurta and Gulsah Akar, and a graduate research assistant at the Center for Urban Resilience and Analytics. My research spans sustainable transportation, urban analytics, travel behavior, and vision AI.",
-    "I build tools that measure streets at scale — sidewalk widths, bike lanes, bus stop amenities, and how complete a street is — and use them to understand route choice, mode choice, and equity in access. In 2026 I was a visiting student at the MIT Senseable City Lab, where I worked on Open Walks, a global, crowdsourced map of sidewalk accessibility.",
+    "I am a Ph.D. student in City and Regional Planning at the Georgia Institute of Technology, advised by Professors Subhrajit Guhathakurta and Gulsah Akar. My research develops data-driven approaches to understanding travel behavior and urban environments, with the goal of supporting more sustainable and equitable transportation systems.",
+    "This work follows two connected strands. The first examines how people travel through and interact with urban environments, focusing on how the built environment shapes travel behavior, accessibility, and mobility. The second develops vision AI tools that convert visual and spatial records of cities into planning evidence. Together, the two strands support planning decisions by connecting how urban environments are measured with how people experience and respond to them.",
   ],
 
   // Education shows only the end date (or "Present").
@@ -32,7 +32,7 @@ export const profile = {
       title: "Ph.D., City and Regional Planning",
       org: "Georgia Institute of Technology",
       dates: "Present",
-      note: "Advisors: Subhrajit Guhathakurta, Gulsah Akar",
+      note: "Advisors: Dr. Subhrajit Guhathakurta, Dr. Gulsah Akar",
     },
     {
       title: "M.S., Urban Analytics",
@@ -43,7 +43,7 @@ export const profile = {
       title: "M.S., Civil and Environmental Engineering\nMaster of City and Regional Planning",
       org: "Georgia Institute of Technology",
       dates: "May 2023",
-      note: "Advisors: Patricia Mokhtarian, Catherine Ross",
+      note: "Advisors: Dr. Patricia Mokhtarian, Dr. Catherine Ross",
     },
     {
       title: "B.S., Urban Engineering",
@@ -59,14 +59,14 @@ export const profile = {
       org: "Center for Urban Resilience and Analytics, Georgia Tech",
       href: "https://resilience.research.gatech.edu/",
       dates: "Aug 2021 – Present",
-      note: "Supervisor: Subhrajit Guhathakurta",
+      note: "Supervisor: Dr. Subhrajit Guhathakurta",
     },
     {
       title: "Graduate Research Assistant",
       org: "Resilient and Equitable Mobility Analytics and Planning Lab, Georgia Tech",
       href: "", // TODO: add the lab's website
       dates: "Jan 2026 – Present",
-      note: "Supervisor: Rounaq Basu",
+      note: "Supervisor: Dr. Rounaq Basu",
     },
     {
       title: "Visiting Student",
