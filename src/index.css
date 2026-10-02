@@ -470,7 +470,6 @@ button {
 
 .card {
   perspective: 1600px;
-  min-height: 400px;
 }
 
 .card-inner {
@@ -501,13 +500,19 @@ button {
 
 .front {
   position: relative;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
 }
 
 .cover {
-  aspect-ratio: 16 / 10;
+  display: block;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-bottom: 1px solid var(--border);
   background: #0b0f1f;
@@ -519,7 +524,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
   transition: transform 0.5s ease;
 }
 
@@ -528,32 +533,54 @@ button {
 }
 
 .front-body {
+  display: block;
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 20px 22px 18px;
+  padding: 20px 22px 22px;
 }
 
 .card-title {
-  margin: 0;
+  display: block;
   font-size: 1.2rem;
   font-weight: 700;
   line-height: 1.3;
 }
 
+.flip-hint {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(7, 9, 20, 0.75);
+  border: 1px solid rgba(230, 200, 121, 0.5);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.front:hover .flip-hint,
+.front:focus-visible .flip-hint {
+  opacity: 1;
+}
+
 .pub-refs {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
+  margin-left: 6px;
+  vertical-align: 1px;
 }
 
 .pub-ref {
-  padding: 2px 9px;
-  border-radius: 6px;
+  padding: 0 7px;
+  border-radius: 5px;
+  line-height: 1.5;
   border: 1px solid rgba(127, 196, 255, 0.35);
   background: rgba(127, 196, 255, 0.08);
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   font-variant-numeric: tabular-nums;
   color: var(--blue);
   text-decoration: none;
@@ -567,7 +594,6 @@ button {
 
 .flip-button {
   align-self: flex-end;
-  margin-top: auto;
   padding: 4px 0;
   border: 0;
   background: none;
@@ -604,25 +630,18 @@ button {
   mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
 }
 
-.back-dates {
-  margin: 0 0 6px;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--gold);
-}
-
 .back-title {
-  margin: 0 0 12px;
-  font-size: 1.08rem;
+  margin: 0;
+  font-size: 1.12rem;
   font-weight: 700;
   line-height: 1.3;
 }
 
-.back-people {
-  margin: 0;
-  font-size: 0.86rem;
-  color: var(--muted);
+.back-funding {
+  margin: 4px 0 0;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--gold);
 }
 
 .back-details {

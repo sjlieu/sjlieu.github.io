@@ -15,50 +15,49 @@ function ProjectCard({ project, onKeyword }: { project: Project; onKeyword: (key
     requestAnimationFrame(() => (next ? backButton : frontButton).current?.focus({ preventScroll: true }));
   };
 
-  // Clicking anywhere on a face flips it, except on its own links and buttons.
-  const onFaceClick = (next: boolean) => (event: MouseEvent) => {
+  // Clicking anywhere on the back flips it over, except on its own links and buttons.
+  const onBackClick = (event: MouseEvent) => {
     if ((event.target as HTMLElement).closest("a, button")) return;
-    flip(next);
+    flip(false);
   };
 
   return (
     <li className={`card${flipped ? " is-flipped" : ""}`}>
       <div className="card-inner">
-        <div className="face front" onClick={onFaceClick(true)} inert={flipped}>
+        {/* The cover side is one big button: just the image and the title. */}
+        <button
+          ref={frontButton}
+          type="button"
+          className="face front"
+          onClick={() => flip(true)}
+          inert={flipped}
+          aria-label={`${project.title}, show details`}
+        >
           <Cover project={project} />
-          <div className="front-body">
-            <h3 className="card-title">{project.title}</h3>
-            {project.publications.length ? (
-              <div className="pub-refs" aria-label="Related publications">
-                {project.publications.map((id) => (
-                  <PublicationRef key={id} id={id} />
-                ))}
-              </div>
-            ) : null}
-            <button
-              ref={frontButton}
-              type="button"
-              className="flip-button"
-              onClick={() => flip(true)}
-              aria-label={`Show details: ${project.title}`}
-            >
-              Details <span aria-hidden="true">↻</span>
-            </button>
-          </div>
-        </div>
+          <span className="front-body">
+            <span className="card-title">{project.title}</span>
+          </span>
+          <span className="flip-hint" aria-hidden="true">
+            ↻ Details
+          </span>
+        </button>
 
-        <div className="face back" onClick={onFaceClick(false)} inert={!flipped}>
+        <div className="face back" onClick={onBackClick} inert={!flipped}>
           <div className="back-scroll">
-            <p className="back-dates">{project.dates}</p>
             <h3 className="back-title">{project.title}</h3>
-            {project.people.map((line) => (
-              <p key={line} className="back-people">
-                {line}
-              </p>
-            ))}
+            <p className="back-funding">{project.funding ? `Funded by ${project.funding}` : "Independent work"}</p>
             <ul className="back-details">
-              {project.details.map((line) => (
-                <li key={line}>{line}</li>
+              {project.details.map((detail) => (
+                <li key={detail.text}>
+                  {detail.text}
+                  {detail.refs?.length ? (
+                    <span className="pub-refs">
+                      {detail.refs.map((id) => (
+                        <PublicationRef key={id} id={id} />
+                      ))}
+                    </span>
+                  ) : null}
+                </li>
               ))}
             </ul>
             {project.links.length ? (

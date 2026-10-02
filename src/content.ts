@@ -102,16 +102,20 @@ export const KEYWORDS = [
 
 export type Keyword = (typeof KEYWORDS)[number];
 
+export type ProjectDetail = {
+  text: string;
+  refs?: string[]; // publication ids shown after the bullet, e.g. ["P7", "C5"]
+};
+
 export type Project = {
   id: string;
   title: string;
-  dates: string;
   // Path to an image in public/ (e.g. "/projects/my-project.jpg"). Empty draws a generated cover.
   cover: string;
+  // Shown as "Funded by …" under the title on the back; empty shows "Independent work".
+  funding: string;
   keywords: Keyword[];
-  publications: string[]; // ids from the publications list below, e.g. "P7"
-  people: string[];
-  details: string[];
+  details: ProjectDetail[];
   links: Link[];
 };
 
@@ -119,14 +123,14 @@ export const projects: Project[] = [
   {
     id: "routable-networks",
     title: "Boston Region Routable Mobility Networks",
-    dates: "Jan 2026 – Present",
     cover: "",
+    funding: "Boston Region MPO",
     keywords: ["Vision AI", "Walking", "Urban Analytics"],
-    publications: [],
-    people: ["Project PI: Dr. Rounaq Basu", "Funding: Boston Region MPO"],
     details: [
-      "Developed a vision AI model identifying the pedestrian network from aerial imagery while addressing occlusion caused by tree canopy and shadows cast by buildings and trees.",
-      "Released the code as a public GitHub repository for open use.",
+      {
+        text: "Developed a vision AI model identifying the pedestrian network from aerial imagery while addressing occlusion caused by tree canopy and shadows cast by buildings and trees.",
+      },
+      { text: "Released the code as a public GitHub repository for open use." },
     ],
     links: [
       {
@@ -136,60 +140,83 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "bicycle-trajectories",
-    title: "Knowledge from City-wide Bicycle Trajectory Data",
-    dates: "Jul 2026 – Present",
+    id: "bikeshare-insights",
+    title: "Behavioral Insights from City-wide Bikeshare Trip Data",
     cover: "",
-    keywords: ["Micromobility", "Shared Mobility", "Travel Behavior"],
-    publications: [],
-    people: ["Collaborator: Dr. Joonho Ko"],
+    funding: "",
+    keywords: ["Micromobility", "Shared Mobility", "Travel Behavior", "Extreme Heat", "Equity"],
     details: [
-      "Among bikeshare users, explored the extent to which subscription commitment coincides with observed frequent use.",
+      {
+        text: "Among bikeshare users, explored the extent to which subscription commitment coincides with observed frequent use.",
+      },
+      {
+        text: "Examined whether extreme heat leads New York City bike share riders to switch from classic bikes to e-bikes on the same routes, and whether the built environment shapes that switch.",
+        refs: ["W2"],
+      },
+      {
+        text: "Measured how well bikeshare networks in five U.S. cities reach the destinations residents actually travel to, and whether these coverage gaps are larger in socioeconomically disadvantaged neighborhoods.",
+        refs: ["W3"],
+      },
+      {
+        text: "Compared how younger and older bike share users in Seoul trade off trip distance against streetscape qualities and midblock conflicts with cars when choosing routes.",
+        refs: ["P9"],
+      },
     ],
     links: [],
   },
   {
     id: "e-scooter-heat",
     title: "Travel Behavior Analysis of Shared E-scooter Users",
-    dates: "Mar 2026 – Present",
     cover: "",
+    funding: "",
     keywords: ["Micromobility", "Shared Mobility", "Travel Behavior", "Extreme Heat"],
-    publications: [],
-    people: ["Collaborators: Drs. Rounaq Basu, Sugie Lee"],
-    details: ["Examined how e-scooter users changed their travel behavior under extreme heat exposure."],
+    details: [
+      { text: "Examined how e-scooter users changed their travel behavior under extreme heat exposure." },
+      {
+        text: "Explored how e-scooter users choose a fare mode (Eco, Standard, or Turbo) when paying more buys a higher top speed, depending on heat exposure and route friction such as bike lanes, pedestrian volume, and traffic signals.",
+      },
+    ],
     links: [],
   },
   {
     id: "open-walks",
     title: "Open Walks",
-    dates: "Mar 2026 – Present",
     cover: "/projects/open-walks.jpg",
+    funding: "",
     keywords: ["Vision AI", "Walking"],
-    publications: ["W1", "W9"],
-    people: ["Project PI: Dr. Martina Mazzarello", "MIT Senseable City Lab"],
     details: [
-      "Developed a tool to capture sidewalk attributes (e.g., width, slope, surface material) at global scale from crowdsourced video data using vision AI.",
-      "Quantified the uncertainty of visual language models when assessing sidewalk attributes via conformal prediction.",
+      {
+        text: "Developed a tool to capture sidewalk attributes (e.g., width, slope, surface material) at global scale from crowdsourced video data using vision AI.",
+        refs: ["W1"],
+      },
+      {
+        text: "Quantified the uncertainty of visual language models when assessing sidewalk attributes via conformal prediction.",
+        refs: ["W9"],
+      },
     ],
     links: [{ label: "Application", href: "https://openwalks.netlify.app/" }],
   },
   {
     id: "complete-streets",
     title: "Evaluating the Completeness of Urban Streets Using Big Data and AI",
-    dates: "Aug 2024 – Dec 2025",
     cover: "/projects/complete-streets.jpg",
+    funding: "U.S. Department of Transportation (Grant no. 69A3552344815)",
     keywords: ["Vision AI", "Complete Streets", "Walking", "Micromobility", "Transit"],
-    publications: ["P8", "P7", "P6", "W11", "C15", "C7", "C5"],
-    people: [
-      "Project PI: Dr. Subhrajit Guhathakurta",
-      "Funding: U.S. Department of Transportation (Grant no. 69A3552344815)",
-    ],
     details: [
-      "Led the research group and developed a framework to quantify attributes of diverse street elements, with a composite scoring system that evaluates completeness using AI and big data.",
-      "Developed a tool estimating sidewalk width using street view imagery and computer vision.",
-      "Developed a framework identifying bike lane type using multimodal imagery.",
-      "Built an agent that automatically finds and identifies bus stop amenities using reinforcement learning.",
-      "Published an online dashboard and a public GitHub repository.",
+      {
+        text: "Led the research group and developed a framework to quantify attributes of diverse street elements, with a composite scoring system that evaluates completeness using AI and big data.",
+        refs: ["W11", "C7", "C15"],
+      },
+      {
+        text: "Developed a tool estimating sidewalk width using street view imagery and computer vision.",
+        refs: ["P7", "C5"],
+      },
+      { text: "Developed a framework identifying bike lane type using multimodal imagery.", refs: ["P8"] },
+      {
+        text: "Built an agent that automatically finds and identifies bus stop amenities using reinforcement learning.",
+        refs: ["P6"],
+      },
+      { text: "Published an online dashboard and a public GitHub repository." },
     ],
     links: [
       { label: "Dashboard", href: "https://gt-cura.github.io/complete_streets_web/" },
@@ -199,54 +226,29 @@ export const projects: Project[] = [
   {
     id: "odmts-equity",
     title: "Transit Equity Implications of On-Demand Multimodal Transit System",
-    dates: "Sep 2021 – Dec 2022",
     cover: "/projects/transit-equity.jpg",
+    funding: "National Science Foundation (Grant no. CMMI-1854684)",
     keywords: ["Transit", "Equity", "Shared Mobility"],
-    publications: ["P2", "C1"],
-    people: [
-      "Project PI: Dr. Subhrajit Guhathakurta",
-      "Funding: National Science Foundation (Grant no. CMMI-1854684)",
-    ],
     details: [
-      "Examined the impact of the ODMTS on transit equity and equality by comparing it with the existing public transit system in Atlanta.",
-      "Created an online dashboard to visualize which neighborhoods take advantage of ODMTS.",
+      {
+        text: "Examined the impact of the ODMTS on transit equity and equality by comparing it with the existing public transit system in Atlanta.",
+        refs: ["P2", "C1"],
+      },
+      { text: "Created an online dashboard to visualize which neighborhoods take advantage of ODMTS." },
     ],
     links: [{ label: "Dashboard", href: "https://geospatial.gatech.edu/transit-equity/" }],
   },
   {
     id: "home-park-studio",
     title: "Home Park Planning Studio",
-    dates: "Aug 2022 – Dec 2022",
     cover: "",
+    funding: "",
     keywords: ["Planning Practice"],
-    publications: ["R1"],
-    people: ["Advisor: Aaron Fortner, AICP"],
     details: [
-      "Conducted data analysis, documentation, visualization, and presentation in a cross-disciplinary, community-involved process to recommend actions that signal a reimagining of neighborhood value.",
-    ],
-    links: [],
-  },
-  {
-    id: "redevelopment-potential",
-    title: "Evaluation of Redevelopment Potential",
-    dates: "May 2022 – Aug 2022",
-    cover: "",
-    keywords: ["Planning Practice", "Urban Analytics"],
-    publications: [],
-    people: ["Advisor: Wei Wang, AICP"],
-    details: ["Proposed several methods to identify land parcels with the potential for redevelopment."],
-    links: [],
-  },
-  {
-    id: "highway-rest-area",
-    title: "Transfer at Highway Rest Area",
-    dates: "Apr 2020 – Jul 2020",
-    cover: "",
-    keywords: ["Shared Mobility", "Transit"],
-    publications: [],
-    people: ["Project PI (self)", "Funding: Korean Ministry of Land, Infrastructure, and Transport"],
-    details: [
-      "Developed a mobility-on-demand service that let passengers plan a long-distance trip combining car sharing and intercity bus.",
+      {
+        text: "Conducted data analysis, documentation, visualization, and presentation in a cross-disciplinary, community-involved process to recommend actions that signal a reimagining of neighborhood value.",
+        refs: ["R1"],
+      },
     ],
     links: [],
   },

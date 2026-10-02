@@ -64,8 +64,8 @@ function GeneratedCover({ project }: { project: Project }) {
 
 export function Cover({ project }: { project: Project }) {
   return (
-    <div className="cover">
+    <span className="cover">
       {project.cover ? <img src={project.cover} alt="" loading="lazy" /> : <GeneratedCover project={project} />}
-    </div>
+    </span>
   );
 }
