@@ -12,8 +12,8 @@ research experience, research projects, and publications.
 - **Project covers:** put an image in `public/projects/` and set the project's `cover`
   (e.g. `"/projects/boston.jpg"`). Projects without one get a generated constellation cover.
 - **Project keywords:** each project's `keywords` drive the filter buttons; add new ones to `KEYWORDS`.
-- **Card backs:** `funding` shows as "Funded by …" (empty shows "Independent work"); each item in
-  `details` is a bullet, and its `refs` (e.g. `["P7", "C5"]`) link to entries in Publications.
+- **Card backs:** each item in `details` is a bullet, and its `refs` (e.g. `["P7", "C5"]`) link to
+  entries in Publications.
 
 Links with an empty `href` are hidden automatically.
 

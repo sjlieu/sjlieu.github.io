@@ -24,13 +24,26 @@ export function PublicationRef({ id }: { id: string }) {
   );
 }
 
+// Author marks († corresponding / presented by co-author, * equal contribution) as small superscripts.
+function withMarks(text: string, key: string) {
+  return text.split(/(\s*[*†](?:\s*[*†])*)/).map((chunk, i) =>
+    /[*†]/.test(chunk) ? (
+      <sup key={`${key}-${i}`} className="author-mark">
+        {chunk.replace(/\s+/g, "")}
+      </sup>
+    ) : (
+      chunk
+    ),
+  );
+}
+
 function Authors({ text }: { text: string }) {
   const parts = text.split(profile.authorName);
   return (
     <>
       {parts.map((part, i) => (
         <span key={i}>
-          {part}
+          {withMarks(part, String(i))}
           {i < parts.length - 1 ? <strong>{profile.authorName}</strong> : null}
         </span>
       ))}
@@ -80,7 +93,9 @@ function PublicationList({ kind }: { kind: PublicationKind }) {
 export function Publications() {
   return (
     <>
-      <p className="legend">† Corresponding author</p>
+      <p className="legend">
+        <sup className="author-mark">†</sup> Corresponding author
+      </p>
       <div className="pub-group">
         <h3 className="sub-label">Peer-Reviewed Papers</h3>
         <PublicationList kind="journal" />
@@ -96,7 +111,9 @@ export function Publications() {
 export function Conferences() {
   return (
     <>
-      <p className="legend">† Presented by co-author</p>
+      <p className="legend">
+        <sup className="author-mark">†</sup> Presented by co-author
+      </p>
       <PublicationList kind="conference" />
     </>
   );

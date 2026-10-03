@@ -706,18 +706,12 @@ button {
 }
 
 .back-title {
-  margin: 0;
+  margin: 0 0 4px;
   font-size: 1.12rem;
   font-weight: 700;
   line-height: 1.3;
 }
 
-.back-funding {
-  margin: 4px 0 0;
-  font-size: 0.88rem;
-  font-style: italic;
-  color: var(--gold);
-}
 
 .back-details {
   margin: 14px 0 0;
@@ -777,6 +771,13 @@ button {
 }
 
 /* ---------- Publications ---------- */
+
+.author-mark {
+  margin-left: 1px;
+  font-size: 0.68em;
+  line-height: 0;
+  vertical-align: super;
+}
 
 .legend {
   margin: -12px 0 28px;

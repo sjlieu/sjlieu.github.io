@@ -4,6 +4,11 @@ import { KEYWORDS, projects, type Keyword, type Project } from "../content";
 import { Cover } from "./Cover";
 import { PublicationRef } from "./Publications";
 
+// Keywords always show in alphabetical order, wherever they appear.
+function sortKeywords(keywords: readonly Keyword[]) {
+  return [...keywords].sort((a, b) => a.localeCompare(b));
+}
+
 function ProjectCard({ project, onKeyword }: { project: Project; onKeyword: (keyword: Keyword) => void }) {
   const [flipped, setFlipped] = useState(false);
   const frontButton = useRef<HTMLButtonElement>(null);
@@ -45,7 +50,6 @@ function ProjectCard({ project, onKeyword }: { project: Project; onKeyword: (key
         <div className="face back" onClick={onBackClick} inert={!flipped}>
           <div className="back-scroll">
             <h3 className="back-title">{project.title}</h3>
-            <p className="back-funding">{project.funding ? `Funded by ${project.funding}` : "Independent work"}</p>
             <ul className="back-details">
               {project.details.map((detail) => (
                 <li key={detail.text}>
@@ -70,7 +74,7 @@ function ProjectCard({ project, onKeyword }: { project: Project; onKeyword: (key
               </div>
             ) : null}
             <div className="back-tags">
-              {project.keywords.map((keyword) => (
+              {sortKeywords(project.keywords).map((keyword) => (
                 <button key={keyword} type="button" onClick={() => onKeyword(keyword)}>
                   {keyword}
                 </button>
@@ -98,7 +102,7 @@ const INITIAL_COUNT = 6;
 export function Research() {
   const [filter, setFilterState] = useState<Keyword | null>(null);
   const [expanded, setExpanded] = useState(false);
-  const keywords = KEYWORDS.filter((keyword) => projects.some((p) => p.keywords.includes(keyword)));
+  const keywords = sortKeywords(KEYWORDS.filter((keyword) => projects.some((p) => p.keywords.includes(keyword))));
   const matching = filter ? projects.filter((p) => p.keywords.includes(filter)) : projects;
   const hiddenCount = Math.max(0, matching.length - INITIAL_COUNT);
   const shown = expanded ? matching : matching.slice(0, INITIAL_COUNT);

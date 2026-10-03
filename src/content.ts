@@ -27,7 +27,7 @@ export const profile = {
 
   bio: [
     "I am a Ph.D. student in City and Regional Planning at the Georgia Institute of Technology, advised by Professors Subhrajit Guhathakurta and Gulsah Akar. My research develops data-driven approaches to understanding travel behavior and urban environments, with the goal of supporting more sustainable and equitable transportation systems.",
-    "This work follows two connected strands. The first examines how people travel through and interact with urban environments, focusing on how the built environment shapes travel behavior, accessibility, and mobility. The second develops vision AI tools that convert visual and spatial records of cities into planning evidence. Together, the two strands support planning decisions by connecting how urban environments are measured with how people experience and respond to them.",
+    "My work follows two connected strands. The first examines how people travel through and interact with urban environments, focusing on how the built environment shapes travel behavior, accessibility, and mobility. The second develops vision AI tools that convert spatial records of cities into planning evidence. Together, the two strands support planning decisions by connecting how urban environments are measured with how people experience and respond to them.",
   ],
 
   // Education shows only the end date (or "Present").
@@ -83,7 +83,6 @@ export const profile = {
       org: "Atlanta Regional Commission",
       href: "https://atlantaregional.org/",
       dates: "May 2022 – Aug 2022",
-      note: "Supervisor: Wei Wang, AICP",
     },
     {
       title: "Undergraduate Research Assistant",
@@ -94,7 +93,7 @@ export const profile = {
     {
       title: "Legislative Aide",
       org: "Seoul Metropolitan Council Transportation Committee",
-      href: "https://www.smc.seoul.kr/",
+      href: "https://www.smc.seoul.kr/foreign/index.do?lang=english/",
       dates: "Dec 2019 – Mar 2020",
     },
   ],
@@ -105,18 +104,19 @@ export const profile = {
 // The filter buttons are built from the keywords used below, in this order.
 export const KEYWORDS = [
   "Vision AI",
-  "Travel Behavior",
-  "Walking",
+  "Computer Vision",
+  "Vision Language Model",
+  "Accessibility",
   "Micromobility",
   "Shared Mobility",
-  "Transit",
-  "Accessibility",
-  "Complete Streets",
+  "Walking",
+  "Heat",
+  "Travel Behavior",
+  "Streetscape",
   "Equity",
-  "School Transportation",
-  "Extreme Heat",
-  "Urban Analytics",
-  "Planning Practice",
+  "Urban Design",
+  "Human Mobility",
+  "Urban Imagery",
 ] as const;
 
 export type Keyword = (typeof KEYWORDS)[number];
@@ -137,8 +137,6 @@ export type Project = {
   // Color behind the image (default: white), e.g. "#070914" to match the site background
   // for images with a dark background.
   coverBackground?: string;
-  // Shown as "Funded by …" under the title on the back; empty shows "Independent work".
-  funding: string;
   keywords: Keyword[];
   details: ProjectDetail[];
   links: Link[];
@@ -150,13 +148,12 @@ export const projects: Project[] = [
     id: "routable-networks",
     title: "Boston Region Routable Mobility Networks",
     cover: "/projects/mobility-network.png",
-    funding: "Boston Region MPO",
-    keywords: ["Vision AI", "Walking", "Urban Analytics"],
+    keywords: ["Vision AI", "Computer Vision", "Urban Imagery", "Walking"],
     details: [
       {
-        text: "Developed a vision AI model identifying the pedestrian network from aerial imagery while addressing occlusion caused by tree canopy and shadows cast by buildings and trees.",
+        text: "Developed a computer vision model that extracts the pedestrian network from aerial imagery, addressing occlusion from tree canopy and from shadows cast by buildings and trees.",
       },
-      { text: "Released the code as a public GitHub repository for open use." },
+      { text: "Released the code and data publicly for open use." },
     ],
     links: [
       {
@@ -169,20 +166,22 @@ export const projects: Project[] = [
     id: "complete-streets",
     title: "Evaluating the Completeness of Urban Streets Using Big Data and AI",
     cover: "/projects/complete-streets.jpg",
-    funding: "U.S. Department of Transportation (Grant no. 69A3552344815)",
-    keywords: ["Vision AI", "Complete Streets", "Walking", "Micromobility", "Transit"],
+    keywords: ["Vision AI", "Computer Vision", "Urban Imagery", "Streetscape", "Urban Design", "Walking", "Micromobility"],
     details: [
       {
-        text: "Led the research group and developed a framework to quantify attributes of diverse street elements, with a composite scoring system that evaluates completeness using AI and big data.",
+        text: "Developed a framework that measures the attributes of diverse street elements, combined with a composite score that evaluates street completeness using AI and big data.",
         refs: ["W11", "C7", "C15"],
       },
       {
-        text: "Developed a tool estimating sidewalk width using street view imagery and computer vision.",
+        text: "Developed a tool that estimates sidewalk width from street view imagery using computer vision.",
         refs: ["P7", "C5"],
       },
-      { text: "Developed a framework identifying bike lane type using multimodal imagery.", refs: ["P8"] },
       {
-        text: "Built an agent that automatically finds and identifies bus stop amenities using reinforcement learning.",
+        text: "Developed a framework that detects and classifies bike lane types from multimodal imagery.",
+        refs: ["P8"],
+      },
+      {
+        text: "Built a reinforcement learning agent that navigates street view imagery to locate and audit bus stop amenities.",
         refs: ["P6"],
       },
       { text: "Published an online dashboard and a public GitHub repository." },
@@ -197,37 +196,35 @@ export const projects: Project[] = [
     title: "Behavioral Insights from City-wide Bikeshare Trip Data",
     cover: "/projects/bikeshare.jpg",
     coverFit: "cover",
-    funding: "",
-    keywords: ["Micromobility", "Shared Mobility", "Travel Behavior", "Extreme Heat", "Equity"],
+    keywords: ["Micromobility", "Shared Mobility", "Travel Behavior", "Heat", "Equity", "Accessibility", "Streetscape"],
     details: [
       {
-        text: "Among bikeshare users, explored the extent to which subscription commitment coincides with observed frequent use.",
+        text: "Compared how younger and older bikeshare users in Seoul trade off trip distance against streetscape quality and midblock conflicts with cars when choosing routes.",
+        refs: ["P9"],
       },
       {
-        text: "Examined whether extreme heat leads New York City bike share riders to switch from classic bikes to e-bikes on the same routes, and whether the built environment shapes that switch.",
+        text: "Examined whether extreme heat leads NYC bikeshare riders to switch from classic to electric bikes, and whether the built environment shapes that switch.",
         refs: ["W2"],
       },
       {
-        text: "Measured how well bikeshare networks in five U.S. cities reach the destinations residents actually travel to, and whether these coverage gaps are larger in socioeconomically disadvantaged neighborhoods.",
+        text: "Measured how well bikeshare networks in five U.S. cities reach the destinations residents actually travel to, and whether coverage gaps are larger in socioeconomically disadvantaged neighborhoods.",
         refs: ["W3"],
       },
       {
-        text: "Compared how younger and older bike share users in Seoul trade off trip distance against streetscape qualities and midblock conflicts with cars when choosing routes.",
-        refs: ["P9"],
+        text: "Classified users by subscription commitment and observed frequency of use, and explored the characteristics of each group.",
       },
     ],
     links: [],
   },
   {
     id: "fifteen-minute-city",
-    title: "Beyond Proximity: Rethinking the 15-Minute City",
+    title: "Rethinking the 15-Minute City",
     cover: "/projects/15minute.jpg",
     coverFit: "cover",
-    funding: "",
-    keywords: ["Accessibility", "Travel Behavior", "Walking", "Urban Analytics"],
+    keywords: ["Accessibility", "Travel Behavior", "Walking", "Streetscape", "Urban Design", "Human Mobility"],
     details: [
       {
-        text: "Examined why residents of highly accessible Chicago neighborhoods still drive or travel beyond their 15-minute walkshed, introducing a “harmony of amenities” metric that captures how co-located destinations work together.",
+        text: "Examined why residents of neighborhoods with high accessibility to amenities still drive or travel beyond their local area, and introduced a “harmony of amenities” metric that captures how co-located destinations work together.",
         refs: ["P10", "C12"],
       },
     ],
@@ -238,15 +235,14 @@ export const projects: Project[] = [
     title: "Open Walks",
     cover: "/projects/open-walks.jpg",
     coverFit: "cover",
-    funding: "",
-    keywords: ["Vision AI", "Walking"],
+    keywords: ["Vision AI", "Vision Language Model", "Urban Imagery", "Walking", "Accessibility"],
     details: [
       {
-        text: "Developed a tool to capture sidewalk attributes (e.g., width, slope, surface material) at global scale from crowdsourced video data using vision AI.",
+        text: "Developed a tool that uses vision AI to capture sidewalk attributes (e.g., width, slope, surface material) at a global scale from crowdsourced video.",
         refs: ["W1"],
       },
       {
-        text: "Quantified the uncertainty of visual language models when assessing sidewalk attributes via conformal prediction.",
+        text: "Quantified the uncertainty of vision language models in assessing sidewalk attributes using conformal prediction.",
         refs: ["W9"],
       },
     ],
@@ -257,15 +253,14 @@ export const projects: Project[] = [
     title: "Beyond Computer Vision: Measuring Streetscapes with Multimodal LLMs",
     cover: "/projects/llm.jpg",
     coverFit: "cover",
-    funding: "",
-    keywords: ["Vision AI", "Equity", "Urban Analytics"],
+    keywords: ["Vision AI", "Vision Language Model", "Computer Vision", "Urban Imagery", "Streetscape", "Urban Design", "Equity"],
     details: [
       {
-        text: "Tested whether multimodal LLMs can capture how streetscape elements are arranged, such as enclosure, transparency, and human scale, and whether this spatial configuration explains perceived safety beyond what computer vision measures.",
+        text: "Tested whether MLLMs can capture how streetscape elements are spatially arranged, and whether that arrangement explains perceived safety beyond what computer vision measures.",
         refs: ["W8", "C16"],
       },
       {
-        text: "Examined whether quantity-based streetscape metrics misjudge street conditions systematically by neighborhood socioeconomic status, and whether MLLM-derived quality features such as maintenance and cleanliness reduce that bias.",
+        text: "Examined whether quantity-based streetscape metrics systematically misjudge street conditions by neighborhood socioeconomic status, and whether quality features derived from MLLMs reduce that bias.",
         refs: ["W6"],
       },
     ],
@@ -273,29 +268,27 @@ export const projects: Project[] = [
   },
   {
     id: "e-scooter-heat",
-    title: "Travel Behavior Analysis of Shared E-scooter Users",
+    title: "Travel Behavior of Shared E-scooter Users",
     cover: "/projects/e-scooter.jpg",
     coverFit: "cover",
-    funding: "",
-    keywords: ["Micromobility", "Shared Mobility", "Travel Behavior", "Extreme Heat"],
+    keywords: ["Micromobility", "Shared Mobility", "Travel Behavior", "Heat"],
     details: [
-      { text: "Examined how e-scooter users changed their travel behavior under extreme heat exposure." },
+      { text: "Examined how e-scooter users changed their travel behavior under extreme heat." },
       {
-        text: "Explored how e-scooter users choose a fare mode (Eco, Standard, or Turbo) when paying more buys a higher top speed, depending on heat exposure and route friction such as bike lanes, pedestrian volume, and traffic signals.",
+        text: "Explored how e-scooter users choose among fare modes (Eco, Standard, and Turbo) when paying more buys a higher top speed.",
       },
     ],
     links: [],
   },
   {
     id: "social-homogeneity",
-    title: "Birds of a Feather in Mobility?",
+    title: "Birds of a Feather in Travel",
     cover: "/projects/birds-feather.jpg",
     coverFit: "cover",
-    funding: "",
-    keywords: ["Accessibility", "Equity", "Travel Behavior", "Urban Analytics"],
+    keywords: ["Accessibility", "Equity", "Human Mobility", "Travel Behavior"],
     details: [
       {
-        text: "Introduced accessibility uncertainty, the variance in how far residents of the same neighborhood travel for the same type of amenity, and examined how the built environment and social homogeneity shape it across U.S. metropolitan areas.",
+        text: "Introduced accessibility uncertainty (the variance in how far residents of the same neighborhood travel for the same type of amenity) and examined how the built environment and social homogeneity shape it.",
         refs: ["W7"],
       },
     ],
@@ -306,11 +299,10 @@ export const projects: Project[] = [
     title: "Street Design and Pedestrian Route Choice",
     cover: "/projects/pedestrian.jpg",
     coverFit: "cover",
-    funding: "",
-    keywords: ["Walking", "Travel Behavior", "Vision AI"],
+    keywords: ["Walking", "Travel Behavior", "Streetscape", "Vision AI", "Computer Vision", "Urban Imagery"],
     details: [
       {
-        text: "Examined how pedestrians in Chicago trade off extra walking distance against street attributes such as amenities, parks, sky visibility, turns, and slopes, and how these preferences differ by gender, age, and income.",
+        text: "Examined how far pedestrians are willing to detour to seek out or avoid street attributes, and how these preferences differ by gender, age, and income.",
         refs: ["P3", "C3"],
       },
     ],
@@ -321,11 +313,10 @@ export const projects: Project[] = [
     title: "School Transportation Without the School Bus",
     cover: "/projects/school-bus.jpg",
     coverFit: "cover",
-    funding: "",
-    keywords: ["School Transportation", "Walking", "Equity", "Travel Behavior"],
+    keywords: ["Walking", "Travel Behavior", "Equity", "Accessibility"],
     details: [
       {
-        text: "Examined how children travel to school when Georgia’s 1.5-mile distance threshold leaves them ineligible for state-funded bus service, and whether socially vulnerable communities bear more of that burden.",
+        text: "Examined how children get to school when state policy makes them ineligible for state-funded bus service, and whether socially vulnerable communities bear more of that burden.",
         refs: ["W10", "C10"],
       },
     ],
@@ -333,17 +324,16 @@ export const projects: Project[] = [
   },
   {
     id: "odmts-equity",
-    title: "Transit Equity Implications of On-Demand Multimodal Transit System",
+    title: "Transit Equity Implications of an On-Demand Multimodal Transit System",
     cover: "/projects/transit-equity.jpg",
     coverFit: "cover",
-    funding: "National Science Foundation (Grant no. CMMI-1854684)",
-    keywords: ["Transit", "Equity", "Accessibility", "Shared Mobility"],
+    keywords: ["Equity", "Accessibility", "Shared Mobility"],
     details: [
       {
-        text: "Examined the impact of the ODMTS on transit equity and equality by comparing it with the existing public transit system in Atlanta.",
+        text: "Measured the impact of an On-Demand Multimodal Transit System (ODMTS) on transit equity and equality by comparing it with Atlanta’s existing public transit system.",
         refs: ["P2", "C1"],
       },
-      { text: "Created an online dashboard to visualize which neighborhoods take advantage of ODMTS." },
+      { text: "Built an online dashboard showing which neighborhoods benefit from ODMTS." },
     ],
     links: [{ label: "Dashboard", href: "https://geospatial.gatech.edu/transit-equity/" }],
   },
@@ -351,11 +341,10 @@ export const projects: Project[] = [
     id: "home-park-studio",
     title: "Home Park Planning Studio",
     cover: "/projects/planning-studio.jpg",
-    funding: "",
-    keywords: ["Planning Practice"],
+    keywords: ["Urban Design"],
     details: [
       {
-        text: "Conducted data analysis, documentation, visualization, and presentation in a cross-disciplinary, community-involved process to recommend actions that signal a reimagining of neighborhood value.",
+        text: "Contributed data analysis, documentation, visualization, and presentations to a cross-disciplinary, community-engaged process that recommended actions to reimagine neighborhood value.",
         refs: ["R1"],
       },
     ],

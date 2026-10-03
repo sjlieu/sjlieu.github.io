@@ -3,18 +3,19 @@ import type { Keyword, Project } from "../content";
 // Tint for generated covers, keyed by a project's first keyword.
 const TINTS: Record<Keyword, string> = {
   "Vision AI": "#7fc4ff",
-  "Travel Behavior": "#e6c879",
-  Walking: "#8be0b4",
+  "Computer Vision": "#7fc4ff",
+  "Vision Language Model": "#a9b8ff",
+  Accessibility: "#7fe0c8",
   Micromobility: "#f2a65a",
   "Shared Mobility": "#c9a2ff",
-  Transit: "#6fd3e0",
-  Accessibility: "#7fe0c8",
-  "Complete Streets": "#9ad16f",
+  Walking: "#8be0b4",
+  Heat: "#ff7a59",
+  "Travel Behavior": "#e6c879",
+  Streetscape: "#9ad16f",
   Equity: "#ff8fa3",
-  "School Transportation": "#f5d547",
-  "Extreme Heat": "#ff7a59",
-  "Urban Analytics": "#7fc4ff",
-  "Planning Practice": "#b8c0d8",
+  "Urban Design": "#b8c0d8",
+  "Human Mobility": "#6fd3e0",
+  "Urban Imagery": "#7fc4ff",
 };
 
 // Small deterministic PRNG so each project always gets the same pattern.
